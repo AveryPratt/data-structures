@@ -30,49 +30,80 @@ class Deque(object):
 
     def append(self, val):
         """adds value to the end of the deque."""
-        pass
+        new_node = Node(val)
+        if self.head is not None:
+            self.head.prev_node = new_node
+            new_node.next_node = self.head
+        else:
+            self.tail = new_node
+        self.head = new_node
 
 
     def appendleft(self, val):
         """adds a value to the front of the deque."""
-        pass
+        new_node = Node(val)
+        if self.tail is not None:
+            self.tail.next_node = new_node
+            new_node.prev_node = self.tail
+        else:
+            self.head = new_node
+        self.tail = new_node
 
 
     def pop(self):
         """removes a value from the end of the deque and returns it
         (raises an exception if the deque is empty)."""
-        if self.head.val is None:
+        if self.head is None:
             raise ValueError("Cannot pop from an empty deque.")
+        val = self.head.val
+        self.head = self.head.next_node
+        self.head.prev_node is None
+        return val
 
 
     def popleft(self):
         """removes a value from the front of the deque and returns it
         (raises an exception if deque is empty)."""
-        if self.tail.val is None:
+        if self.tail is None:
             raise ValueError("Cannot popleft from an empty deque.")
+        val = self.tail.val
+        self.tail = self.tail.prev_node
+        self.tail.next_node is None
+        return val
 
 
     def peek(self):
         """returns the next value that would be returned by pop but leaves the value in the deque
         (returns None if the deque is empty)."""
-        pass
+        if self.head:
+            return self.head.val
+        return None
 
 
     def peekleft(self):
         """returns the next value that would be returned by popleft but leaves the value in the
         deque (returns None if the deque is empty)."""
-        pass
+        if self.tail:
+            return self.tail.val
+        return None
 
 
     def size(self):
         """returns the count of items in the queue (returns 0 if the queue is empty)."""
-        pass
+        count = 0
+        if self.head:
+            count = 1
+        curr = self.head
+        while curr is not self.tail:
+            curr = curr.next_node
+            count += 1
+        return count
 
 
 class Node(object):
     """A container to store data inside of a Deque."""
 
-    def __init__(self, val, next_node, prev_node):
+    def __init__(self, val, next_node=None, prev_node=None):
         """Sets value, and links to other nodes in Deque."""
         self.val = val
         self.next_node = next_node

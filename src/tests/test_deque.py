@@ -61,7 +61,7 @@ def test_appendleft4(emptydq):
     emptydq.appendleft(1)
     emptydq.appendleft(2)
     emptydq.appendleft(3)
-    assert emptydq.tail.prev_node.next_node is 3
+    assert emptydq.tail.prev_node.next_node.val is 3
 
 
 def test_pop1(fulldq):
@@ -75,7 +75,7 @@ def test_pop2(fulldq):
 
 def test_pop3(fulldq):
     fulldq.pop()
-    assert fulldq.head.next_node is None
+    assert fulldq.head.next_node.val is 1
 
 
 def test_pop4(emptydq):
@@ -95,12 +95,12 @@ def test_popleft2(fulldq):
 
 def test_popleft3(fulldq):
     fulldq.popleft()
-    assert fulldq.tail.prev_node is None
+    assert fulldq.tail.prev_node.val is 3
 
 
 def test_popleft4(emptydq):
     with pytest.raises(ValueError) as excinfo:
-        emptydq.pop()
+        emptydq.popleft()
     excinfo.match("Cannot popleft from an empty deque.")
 
 
