@@ -57,4 +57,4 @@ methods:
 - peek()
     returns the value of the head withoud dequeueing it.
 
-Developed by Avery Pratt, Patrick Saunders, and Joey DeRosa
+Developed by Avery Pratt, Patrick Saunders, Joey DeRosa, and Casey O'Kane
