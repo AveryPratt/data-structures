@@ -19,42 +19,51 @@ class Deque(object):
 
     peekleft(): returns the next value that would be returned by popleft but leaves the value in the
     deque (returns None if the deque is empty).
-    
+
     size(): returns the count of items in the queue (returns 0 if the queue is empty)."""
     def __init__(self):
         """Creates a new instance of a doubly-ended queue."""
         self.head = None
         self.tail = None
         self.length = 0
-    
+
+
     def append(self, val):
         """adds value to the end of the deque."""
         pass
-    
+
+
     def appendleft(self, val):
         """adds a value to the front of the deque."""
         pass
-    
+
+
     def pop(self):
         """removes a value from the end of the deque and returns it
         (raises an exception if the deque is empty)."""
-        pass
-    
+        if self.head.val is None:
+            raise ValueError("Cannot pop from an empty deque.")
+
+
     def popleft(self):
         """removes a value from the front of the deque and returns it
         (raises an exception if deque is empty)."""
-        pass
-    
+        if self.tail.val is None:
+            raise ValueError("Cannot popleft from an empty deque.")
+
+
     def peek(self):
         """returns the next value that would be returned by pop but leaves the value in the deque
         (returns None if the deque is empty)."""
         pass
-    
+
+
     def peekleft(self):
         """returns the next value that would be returned by popleft but leaves the value in the
         deque (returns None if the deque is empty)."""
         pass
-    
+
+
     def size(self):
         """returns the count of items in the queue (returns 0 if the queue is empty)."""
         pass
