@@ -3,7 +3,7 @@
 
 class Deque(object):
     """A doubly-ended queue where nodes can be removed from the head or the tail.
-    
+
     append(val): adds value to the end of the deque.
 
     appendleft(val): adds a value to the front of the deque.
@@ -57,7 +57,7 @@ class Deque(object):
             raise ValueError("Cannot pop from an empty deque.")
         val = self.head.val
         self.head = self.head.next_node
-        self.head.prev_node is None
+        self.head.prev_node = None
         self.persist = False
         return val
 
@@ -68,7 +68,7 @@ class Deque(object):
             raise ValueError("Cannot popleft from an empty deque.")
         val = self.tail.val
         self.tail = self.tail.prev_node
-        self.tail.next_node is None
+        self.tail.next_node = None
         self.persist = False
         return val
 
