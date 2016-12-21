@@ -2,7 +2,8 @@
 
 
 class Deque(object):
-    """A doubly-ended queue where nodes can be removed from the head or the tail.
+    """
+    A doubly-ended queue where nodes can be removed from the head or the tail.
 
     append(val): adds value to the end of the deque.
 
@@ -20,7 +21,8 @@ class Deque(object):
     peekleft(): returns the next value that would be returned by popleft but leaves the value in the
     deque (returns None if the deque is empty).
 
-    size(): returns the count of items in the queue (returns 0 if the queue is empty)."""
+    size(): returns the count of items in the queue (returns 0 if the queue is empty).
+    """
     def __init__(self):
         """Create a new instance of a doubly-ended queue."""
         self.head = None
