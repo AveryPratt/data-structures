@@ -10,6 +10,8 @@ class Node(object):
         self.parent = parent
         self.left_child = left_child
         self.right_child = right_child
+        self.balance_number = 0
+
 
 class BinarySearchTree(object):
     """A structure that facilitates fast look-up of a group of organized data.
@@ -22,16 +24,17 @@ class BinarySearchTree(object):
 
     depth(self): Returns the length of the longest branch of the tree.
 
-    contains(self, val): Determines whether a value is contained within the tree.
+    contains(self, val): Determines whether val is contained within the tree.
 
-    balance(self): Returns the difference in length between the left and right sides of the tree.
-    (negative value if left is longer)
+    balance(self): Returns the difference in length between the left and right
+    sides of the tree. (negative value if left is longer).
     """
+
     def __init__(self, itr=None):
         """Create an instance of a BinarySearchTree."""
         self.root = None
         self.size = 0
-        self.depth = 0
+
         if hasattr(itr, "__iter__"):
             for val in itr:
                 self.insert(val)
@@ -58,7 +61,7 @@ class BinarySearchTree(object):
 
     def depth(self):
         """Return the length of the longest branch of the tree."""
-        return self.depth
+        return self.root.balance_number
 
     def contains(self, val):
         """Return a boolean determining if the value is already in the tree."""
@@ -69,7 +72,7 @@ class BinarySearchTree(object):
 
         ...of the tree. (negative value if left is longer)
         """
-        pass
+        return self.root.left_child.balance_number - self.root.right_child.balance_number
 
     def _find(self, val, cur_node):
         """Recursively inserts value into the tree."""
@@ -86,20 +89,26 @@ class BinarySearchTree(object):
             else:
                 self._find(val, cur_node.left_child)
 
-    def _sink(self, val, cur_node, count=0):
+    def _sink(self, val, cur_node):
         """Recursively inserts value into the tree."""
-        count += 1
-        if count > self.depth:
-            self.depth = count
         if val > cur_node.data:
             if not cur_node.right_child:
                 cur_node.right_child = Node(val, cur_node)
                 self.size += 1
+                if cur_node.balance_number == 0:
+                    cur_node.balance_number = 1
             else:
-                self._sink(val, cur_node.right_child, count)
+                count = self._sink(val, cur_node.right_child)
+                if cur_node.balance_number <= count:
+                    cur_node.balance_number += 1
         elif val < cur_node.data:
             if not cur_node.left_child:
                 cur_node.left_child = Node(val, cur_node)
                 self.size += 1
+                if cur_node.balance_number == 0:
+                    cur_node.balance_number = 1
             else:
-                self._sink(val, cur_node.left_child, count)
+                count = self._sink(val, cur_node.left_child)
+                if cur_node.balance_number <= count:
+                    cur_node.balance_number += 1
+        return cur_node.balance_number
