@@ -33,6 +33,8 @@ class BinarySearchTree(object):
         if hasattr(itr, "__iter__"):
             for val in itr:
                 self.insert(val)
+        elif itr:
+            self.insert(itr)
 
     def insert(self, val):
         """Insert a value into the tree."""
