@@ -4,6 +4,8 @@
 class Queue(object):
     """A singly-linked list."""
 
+    my_prop = 7
+
     def __init__(self):
         """Create an instance of type Queue. Allow data to be passed in."""
         self.head = None
@@ -55,3 +57,5 @@ class Node(object):
         self.data = data
         self.next = next
         self.prev = prev
+
+Queue.
