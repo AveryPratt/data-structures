@@ -76,18 +76,17 @@ class BinarySearchTree(object):
 
     def _find(self, val, cur_node):
         """Recursively inserts value into the tree."""
+        # import pdb; pdb.set_trace()
         if val == cur_node.data:
             return cur_node
         elif val > cur_node.data:
             if not cur_node.right_child:
                 return None
-            else:
-                self._find(val, cur_node.right_child)
+            return self._find(val, cur_node.right_child)
         elif val < cur_node.data:
             if not cur_node.left_child:
                 return None
-            else:
-                self._find(val, cur_node.left_child)
+            return self._find(val, cur_node.left_child)
 
     def _sink(self, val, cur_node):
         """Recursively inserts value into the tree."""

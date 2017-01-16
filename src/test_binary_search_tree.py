@@ -10,7 +10,8 @@ def new_bst():
     bst = BinarySearchTree([8, 3, 10, 1, 6, 9])
     bst_empty = BinarySearchTree()
     bst_one_node = BinarySearchTree(3)
-    return bst, bst_empty, bst_one_node
+    bst_ordered = BinarySearchTree([1, 2, 3, 4, 5])
+    return bst, bst_empty, bst_one_node, bst_ordered
 
 
 def test_initiate_node_data():
@@ -70,3 +71,23 @@ def test_insert_a_number_already_there(new_bst):
     new_bst[2].insert(3)
     assert new_bst[2].root.data == 3
     assert new_bst[2].root.right_child is None and new_bst[2].root.left_child is None
+
+
+def test_search_empty(new_bst):
+    """Test searching an empty tree returns None."""
+    assert new_bst[1].search(5) is None
+
+
+def test_search_root_found(new_bst):
+    """Test searching for the root value in tree returns the root."""
+    assert new_bst[0].search(8) is new_bst[0].root
+
+
+def test_search_child_found(new_bst):
+    """Test searching for a value in tree returns correct node."""
+    assert new_bst[0].search(6) is new_bst[0].root.left_child.right_child
+
+
+def test_search_not_found(new_bst):
+    """Test searching for a value that doesn't exist returns None."""
+    assert new_bst[0].search(100) is None
