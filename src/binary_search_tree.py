@@ -62,7 +62,7 @@ class BinarySearchTree(object):
 
     def contains(self, val):
         """Return a boolean determining if the value is already in the tree."""
-        pass
+        return False if not self.search(val) else True
 
     def balance(self):
         """Return the difference in length between the left and right sides...
