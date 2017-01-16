@@ -7,6 +7,8 @@ def new_bst():
     """Fixture for a bst."""
     from binary_search_tree import BinarySearchTree
     bst = BinarySearchTree([8, 3, 10, 1, 6, 9])
+    bst_empty = BinarySearchTree()
+    bst_one_node = BinarySearchTree(3)
     return bst
 
 
