@@ -83,6 +83,22 @@ class BinarySearchTree(object):
                 return 0 - self.root.left_child.balance_number
             return self.root.right_child.balance_number - self.root.left_child.balance_number
         return 0
+    
+    def breadth_first_traversal(self):
+        """Traverse the list breadth-first and return a list of values."""
+        pass
+    
+    def pre_order_traversal(self):
+        """Traverse the list depth-first and return a list of values in pre-order (starting at the root)."""
+        pass
+    
+    def in_order_traversal(self):
+        """Traverse the list depth-first and return a list of values in sorted order."""
+        pass
+
+    def post_order_traversal(self):
+        """Traverse the list depth-first and return a list of values in post-order (ending at the root)."""
+        pass
 
     def _find(self, val, cur_node):
         """Recursively finds value into the tree."""
