@@ -1,5 +1,5 @@
 """Implementation of a binary search tree."""
-from stack import Stack
+
 
 class Node(object):
     """."""
@@ -83,26 +83,26 @@ class BinarySearchTree(object):
                 return 0 - self.root.left_child.balance_number
             return self.root.right_child.balance_number - self.root.left_child.balance_number
         return 0
-    
+
     def breadth_first_traversal(self):
         """Traverse the list breadth-first and return a list of values."""
         pass
-    
+
     def pre_order_traversal(self):
         """Traverse the list depth-first and return a list of values in pre-order (starting at the root)."""
         cur_node = self.root
         if cur_node is None:
             return
-        s = []
-        s.append(cur_node)
+        visited = []
+        visited.append(cur_node)
 
-        while len(s) > 0:
-            cur_node = s.pop()
+        while len(visited) > 0:
+            cur_node = visited.pop()
             yield cur_node.data
             if cur_node.right_child:
-                s.append(cur_node.right_child)
+                visited.append(cur_node.right_child)
             if cur_node.left_child:
-                s.append(cur_node.left_child)
+                visited.append(cur_node.left_child)
 
     def in_order_traversal(self):
         """Traverse the list depth-first and return a list of values in sorted order."""
@@ -110,7 +110,21 @@ class BinarySearchTree(object):
 
     def post_order_traversal(self):
         """Traverse the list depth-first and return a list of values in post-order (ending at the root)."""
-        pass
+        cur_node = self.root
+        visited = []
+        last_node_visited = None
+        while len(visited) > 0 or cur_node:
+            if cur_node:
+                visited.append(cur_node)
+                cur_node = cur_node.left_child
+            else:
+                peek_node = visited[-1]
+                if peek_node.right_child and last_node_visited != peek_node.right_child:
+                    cur_node = peek_node.right_child
+                else:
+                    yield peek_node.data
+                    last_node_visited = visited.pop()
+
 
     def _find(self, val, cur_node):
         """Recursively finds value into the tree."""
