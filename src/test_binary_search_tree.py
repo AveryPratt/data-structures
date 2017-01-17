@@ -174,3 +174,13 @@ def test_balance_on_unbalanced_tree(new_bst):
 def test_balance_on_empty(new_bst):
     """Test when root is none, balace is 0."""
     assert new_bst[1].balance() == 0
+
+
+def test_preorder_traversal(new_bst):
+    """Test preorder traversal."""
+    expected = [8, 3, 1, 6, 10, 9]
+    result = []
+    for x in new_bst[0].pre_order_traversal():
+        result.append(x)
+
+    assert expected == result
