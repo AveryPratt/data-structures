@@ -101,3 +101,20 @@ def test_depth_empty(new_bst):
 def test_depth_root(new_bst):
     """Test depth of tree with only the root node is 0."""
     assert new_bst[2].depth() == 0
+
+
+def test_depth_balanced(new_bst):
+    """Test depth of balanced tree is accurate."""
+    assert new_bst[0].depth() == 2
+
+
+def test_depth_unbalanced(new_bst):
+    """Test depth of unbalanced tree is accurate."""
+    assert new_bst[3].depth() == 4
+
+
+def test_depth_after_add_repeat(new_bst):
+    """Test that adding a repeat value doesn't mess up the depth."""
+    new_bst[0].insert(6)
+    assert new_bst[0].depth() == 2
+
