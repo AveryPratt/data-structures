@@ -1,5 +1,5 @@
 """Implementation of a binary search tree."""
-
+from stack import Stack
 
 class Node(object):
     """."""
@@ -90,8 +90,20 @@ class BinarySearchTree(object):
     
     def pre_order_traversal(self):
         """Traverse the list depth-first and return a list of values in pre-order (starting at the root)."""
-        pass
-    
+        cur_node = self.root
+        if cur_node is None:
+            return
+        s = []
+        s.append(cur_node)
+
+        while len(s) > 0:
+            cur_node = s.pop()
+            yield cur_node.data
+            if cur_node.right_child:
+                s.append(cur_node.right_child)
+            if cur_node.left_child:
+                s.append(cur_node.left_child)
+
     def in_order_traversal(self):
         """Traverse the list depth-first and return a list of values in sorted order."""
         pass
