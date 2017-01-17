@@ -118,3 +118,37 @@ def test_depth_after_add_repeat(new_bst):
     new_bst[0].insert(6)
     assert new_bst[0].depth() == 2
 
+
+def test_contains_is_true(new_bst):
+    """Test that contains is true for value in tree."""
+    assert new_bst[2].contains(3)
+
+
+def test_contains_is_false(new_bst):
+    """Test that contains is false for value not in tree."""
+    assert not new_bst[2].contains(5)
+
+
+def test_contains_is_false_on_empty(new_bst):
+    """Test that contains is false for empty tree."""
+    assert not new_bst[1].contains(5)
+
+
+def test_contains_root_node(new_bst):
+    """Test contains returns true if root node is val."""
+    assert new_bst[0].contains(8)
+
+
+def test_balance_on_balanced_tree(new_bst):
+    """Test balance returns 0 for balanced."""
+    assert new_bst[0].balance() == 0
+
+
+def test_balance_on_unbalanced_tree(new_bst):
+    """Test balance returns negative for left."""
+    assert new_bst[3].balance() == -3
+
+
+def test_balance_on_empty(new_bst):
+    """Test when root is none, balace is 0."""
+    assert new_bst[1].balance() == 0
