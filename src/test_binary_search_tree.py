@@ -187,6 +187,16 @@ def test_preorder_traversal(new_bst):
     assert expected == result
 
 
+def test_post_traversal(new_bst):
+    """Test post_order traversal."""
+    expected = [1, 6, 3, 9, 10, 8]
+    result = []
+    for x in new_bst[0].post_order_traversal():
+        result.append(x)
+
+    assert expected == result
+
+
 def test_inorder_traversal(new_bst):
     """Test inorder traversal."""
     expected = [1, 3, 6, 8, 9, 10]
