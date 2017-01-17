@@ -11,7 +11,8 @@ def new_bst():
     bst_empty = BinarySearchTree()
     bst_one_node = BinarySearchTree(3)
     bst_ordered = BinarySearchTree([1, 2, 3, 4, 5])
-    return bst, bst_empty, bst_one_node, bst_ordered
+    bst_reversed = BinarySearchTree([5, 4, 3, 2, 1])
+    return bst, bst_empty, bst_one_node, bst_ordered, bst_reversed
 
 
 def test_initiate_node_data():
@@ -194,3 +195,49 @@ def test_post_traversal(new_bst):
         result.append(x)
 
     assert expected == result
+
+
+def test_inorder_traversal(new_bst):
+    """Test inorder traversal."""
+    expected = [1, 3, 6, 8, 9, 10]
+    result = []
+    for x in new_bst[0].in_order_traversal():
+        result.append(x)
+
+    assert expected == result
+
+
+def test_inorder_traversal_empty(new_bst):
+    """Test inorder traversal on empty list."""
+    result = []
+    for x in new_bst[1].in_order_traversal():
+        result.append(x)
+
+    assert result == []
+
+
+def test_inorder_traversal_one_node(new_bst):
+    """Test inorder traversal on a list with one node."""
+    result = []
+    for x in new_bst[2].in_order_traversal():
+        result.append(x)
+
+    assert result == [3]
+
+
+def test_inorder_traversal_unbalanced_right(new_bst):
+    """Test inorder traversal on a list with a right side larger than the left."""
+    result = []
+    for x in new_bst[3].in_order_traversal():
+        result.append(x)
+
+    assert result == [1, 2, 3, 4, 5]
+
+
+def test_inorder_traversal_unbalanced_left(new_bst):
+    """Test inorder traversal on a list with a left side larger than the right."""
+    result = []
+    for x in new_bst[4].in_order_traversal():
+        result.append(x)
+
+    assert result == [1, 2, 3, 4, 5]
