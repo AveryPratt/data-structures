@@ -179,66 +179,48 @@ def test_balance_on_empty(new_bst):
 
 def test_preorder_traversal(new_bst):
     """Test preorder traversal."""
-    expected = [8, 3, 1, 6, 10, 9]
-    result = []
-    for x in new_bst[0].pre_order_traversal():
-        result.append(x)
+    result = [x for x in new_bst[0].pre_order_traversal()]
 
-    assert expected == result
+    assert [8, 3, 1, 6, 10, 9] == result
 
 
 def test_post_traversal(new_bst):
     """Test post_order traversal."""
-    expected = [1, 6, 3, 9, 10, 8]
-    result = []
-    for x in new_bst[0].post_order_traversal():
-        result.append(x)
-
-    assert expected == result
+    result = [x for x in new_bst[0].post_order_traversal()]
+    assert [1, 6, 3, 9, 10, 8] == result
 
 
 def test_inorder_traversal(new_bst):
     """Test inorder traversal."""
-    expected = [1, 3, 6, 8, 9, 10]
-    result = []
-    for x in new_bst[0].in_order_traversal():
-        result.append(x)
+    result = [x for x in new_bst[0].in_order_traversal()]
 
-    assert expected == result
+    assert [1, 3, 6, 8, 9, 10] == result
 
 
 def test_inorder_traversal_empty(new_bst):
     """Test inorder traversal on empty list."""
-    result = []
-    for x in new_bst[1].in_order_traversal():
-        result.append(x)
+    result = [x for x in new_bst[1].in_order_traversal()]
 
     assert result == []
 
 
 def test_inorder_traversal_one_node(new_bst):
     """Test inorder traversal on a list with one node."""
-    result = []
-    for x in new_bst[2].in_order_traversal():
-        result.append(x)
+    result = [x for x in new_bst[2].in_order_traversal()]
 
     assert result == [3]
 
 
 def test_inorder_traversal_unbalanced_right(new_bst):
     """Test inorder traversal on a list with a right side larger than the left."""
-    result = []
-    for x in new_bst[3].in_order_traversal():
-        result.append(x)
+    result = [x for x in new_bst[3].in_order_traversal()]
 
     assert result == [1, 2, 3, 4, 5]
 
 
 def test_inorder_traversal_unbalanced_left(new_bst):
     """Test inorder traversal on a list with a left side larger than the right."""
-    result = []
-    for x in new_bst[4].in_order_traversal():
-        result.append(x)
+    result = [x for x in new_bst[4].in_order_traversal()]
 
     assert result == [1, 2, 3, 4, 5]
 
