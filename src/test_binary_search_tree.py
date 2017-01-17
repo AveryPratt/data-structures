@@ -93,6 +93,28 @@ def test_search_not_found(new_bst):
     assert new_bst[0].search(100) is None
 
 
+def test_size_of_bst(new_bst):
+    """Test size of a bst."""
+    assert new_bst[0].size() == 6
+
+
+def test_size_of_empty_bst(new_bst):
+    """Test size of an empty bst."""
+    assert new_bst[1].size() == 0
+
+
+def test_size_of_bst_of_one(new_bst):
+    """Test size of a bst of one."""
+    assert new_bst[2].size() == 1
+
+
+def test_size_is_increased_when_I_insert(new_bst):
+    """Test size of bst increases when insert."""
+    old_size = new_bst[0].size()
+    new_bst[0].insert(0)
+    assert old_size + 1 == new_bst[0].size()
+
+
 def test_depth_empty(new_bst):
     """Test depth of empty tree is None."""
     assert new_bst[1].depth() is None
@@ -146,7 +168,7 @@ def test_balance_on_balanced_tree(new_bst):
 
 def test_balance_on_unbalanced_tree(new_bst):
     """Test balance returns negative for left."""
-    assert new_bst[3].balance() == -3
+    assert new_bst[3].balance() == 3
 
 
 def test_balance_on_empty(new_bst):
