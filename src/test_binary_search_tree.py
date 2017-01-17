@@ -91,3 +91,13 @@ def test_search_child_found(new_bst):
 def test_search_not_found(new_bst):
     """Test searching for a value that doesn't exist returns None."""
     assert new_bst[0].search(100) is None
+
+
+def test_depth_empty(new_bst):
+    """Test depth of empty tree is None."""
+    assert new_bst[1].depth() is None
+
+
+def test_depth_root(new_bst):
+    """Test depth of tree with only the root node is 0."""
+    assert new_bst[2].depth() == 0
