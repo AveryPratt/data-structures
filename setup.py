@@ -1,6 +1,5 @@
 """Setup file for data structures assignment."""
 
-
 from setuptools import setup
 
 
