@@ -45,6 +45,7 @@ class BinarySearchTree(object):
         """Insert a value into the tree."""
         if not self.root:
             self.root = Node(val)
+            self.size_number += 1
         else:
             self._sink(val, self.root)
 
@@ -77,15 +78,14 @@ class BinarySearchTree(object):
         """
         while self.root:
             if not self.root.left_child:
-                return 0 - self.root.right_child.balance_number
+                return self.root.right_child.balance_number - 0
             if not self.root.right_child:
-                return self.root.left_child.balance_number - 0
-            return self.root.left_child.balance_number - self.root.right_child.balance_number
+                return 0 - self.root.left_child.balance_number
+            return self.root.right_child.balance_number - self.root.left_child.balance_number
         return 0
 
     def _find(self, val, cur_node):
-        """Recursively inserts value into the tree."""
-        # import pdb; pdb.set_trace()
+        """Recursively finds value into the tree."""
         if val == cur_node.data:
             return cur_node
         elif val > cur_node.data:
