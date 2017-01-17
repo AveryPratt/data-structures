@@ -186,7 +186,7 @@ def test_preorder_traversal(new_bst):
     assert expected == result
 
 
-def test_neworder_traversal(new_bst):
+def test_inorder_traversal(new_bst):
     """Test inorder traversal."""
     expected = [1, 3, 6, 8, 9, 10]
     result = []
