@@ -11,7 +11,11 @@ setup(
     author="Patrick & Joey & Avery & Claire & Benny",
     author_email="",
     license="MIT",
-    py_modules=['linked_list', 'stack'],
+    py_modules=['linked_list',
+                'stack',
+                'binary_search_tree',
+                'deque',
+                'double_linked_list'],
     package_dir={'': 'src'},
     install_requires=[''],
     extras_require={'test': ['pytest', 'pytest-watch', 'pytest-cov', 'tox']}
