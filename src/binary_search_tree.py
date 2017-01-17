@@ -1,5 +1,4 @@
 """Implementation of a binary search tree."""
-from stack import Stack
 
 class Node(object):
     """."""
@@ -106,7 +105,16 @@ class BinarySearchTree(object):
 
     def in_order_traversal(self):
         """Traverse the list depth-first and return a list of values in sorted order."""
-        pass
+        node = self.root
+        s = []
+        while len(s) > 0 or node:
+            if node:
+                s.append(node)
+                node = node.left_child
+            else:
+                node = s.pop()
+                yield node.data
+                node = node.right_child
 
     def post_order_traversal(self):
         """Traverse the list depth-first and return a list of values in post-order (ending at the root)."""
