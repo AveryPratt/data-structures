@@ -75,7 +75,13 @@ class BinarySearchTree(object):
 
         ...of the tree. (negative value if left is longer)
         """
-        return self.root.left_child.balance_number - self.root.right_child.balance_number
+        while self.root:
+            if not self.root.left_child:
+                return 0 - self.root.right_child.balance_number
+            if not self.root.right_child:
+                return self.root.left_child.balance_number - 0
+            return self.root.left_child.balance_number - self.root.right_child.balance_number
+        return 0
 
     def _find(self, val, cur_node):
         """Recursively inserts value into the tree."""
