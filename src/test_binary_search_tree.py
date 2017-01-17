@@ -231,3 +231,5 @@ def test_inorder_traversal_unbalanced_left(new_bst):
         result.append(x)
 
     assert result == [1, 2, 3, 4, 5]
+
+
