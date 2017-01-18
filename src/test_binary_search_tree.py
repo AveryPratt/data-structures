@@ -311,7 +311,7 @@ def test_remove_tree_one(new_bst):
     """Remove root node of tree of one."""
     new_bst[2].remove(3)
 
-    assert new_bst.root is None
+    assert new_bst[2].root is None
 
 
 def test_remove_tree(new_bst):
@@ -320,4 +320,32 @@ def test_remove_tree(new_bst):
 
     result = [x for x in new_bst[0].in_order_traversal()]
 
-    assert result == [8, 10, 1, 6, 9]
+    assert result == [1, 6, 8, 9, 10]
+
+
+def test_remove_tree_node_no_children(new_bst):
+    """Test remove."""
+    new_bst[0].remove(1)
+
+    result = [x for x in new_bst[0].in_order_traversal()]
+
+    assert result == [3, 6, 8, 9, 10]
+
+
+def test_remove_tree_node_only_left_child(new_bst):
+    """Test remove."""
+    new_bst[0].remove(10)
+
+    result = [x for x in new_bst[0].in_order_traversal()]
+
+    assert result == [1, 3, 6, 8, 9]
+
+
+def test_remove_tree_node_only_right_child(new_bst):
+    """Test remove."""
+    new_bst[0].insert(9.5)
+    new_bst[0].remove(9)
+
+    result = [x for x in new_bst[0].in_order_traversal()]
+
+    assert result == [1, 3, 6, 8, 9.5, 10]
