@@ -49,6 +49,28 @@ class BinarySearchTree(object):
         else:
             self._sink(val, self.root)
 
+    def remove(self, val):
+        """Remove a value and its node from the tree."""
+        node = self.search(val)
+        next_node = None
+        if node.left_child ^ node.right_child:
+            if node.left_child:
+                next_node = node.left_child
+            else:
+                next_node = node.right_child
+        elif node.left_child and node.right_child:
+            next_node = self.in_order_traversal(node)
+            next_node.left_child = node.left_child
+            next_node.right_child = node.right_child
+        if node is self.root:
+            self.root = next_node
+            return
+        elif node is node.parent.left_child:
+            node.parent.left_child = next_node
+        else:
+            node.parent.right_child = next_node
+        next_node.parent = node.parent
+
     def search(self, val):
         """Return the node in the tree with the given value."""
         if not self.root:
@@ -115,9 +137,10 @@ class BinarySearchTree(object):
             if cur_node.left_child:
                 visited.append(cur_node.left_child)
 
-    def in_order_traversal(self):
+    def in_order_traversal(self, node=None):
         """Traverse the list depth-first and return a list of values in sorted order."""
-        node = self.root
+        if node is None:
+            node = self.root
         s = []
         while len(s) > 0 or node:
             if node:
