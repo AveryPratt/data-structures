@@ -53,15 +53,22 @@ class BinarySearchTree(object):
         """Remove a value and its node from the tree."""
         node = self.search(val)
         next_node = None
+        # import pdb; pdb.set_trace()
         try:
             if node.left_child and not node.right_child:
                 next_node = node.left_child
             elif node.right_child and not node.left_child:
                 next_node = node.right_child
             elif node.left_child and node.right_child:
-                next_node = self.in_order_traversal(node)
-                next_node.left_child = node.left_child
-                next_node.right_child = node.right_child
+                gen = self.in_order_traversal()
+                path = None
+                while path is not val:
+                    path = gen.next()
+                next_node = self.search(gen.next())
+                if next_node is not node.left_child:
+                    next_node.left_child = node.left_child
+                if next_node is not node.right_child:
+                    next_node.right_child = node.right_child
             if node is self.root:
                 self.root = next_node
             elif node is node.parent.left_child:
