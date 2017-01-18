@@ -91,7 +91,7 @@ def test_pop3(fulldq):
 
 def test_pop4(emptydq):
     """Tests that popping from an empty deque raises a value error."""
-    with pytest.raises(ValueError, "Cannot pop from an empty deque."):
+    with pytest.raises(ValueError, "Cannot pop from an empty deque.")
         emptydq.pop()
 
 
