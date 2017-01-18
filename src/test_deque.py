@@ -91,7 +91,7 @@ def test_pop3(fulldq):
 
 def test_pop4(emptydq):
     """Tests that popping from an empty deque raises a value error."""
-    with pytest.raises(ValueError, "Cannot pop from an empty deque.")
+    with pytest.raises(ValueError):
         emptydq.pop()
 
 
@@ -114,9 +114,8 @@ def test_popleft3(fulldq):
 
 def test_popleft4(emptydq):
     """Tests that poplefting from an empty deque raises a value error."""
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError):
         emptydq.popleft()
-    excinfo.match("Cannot popleft from an empty deque.")
 
 
 def test_peek1(emptydq):
