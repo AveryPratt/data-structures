@@ -1,6 +1,6 @@
 # data-structures
 
-[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=master)](https://travis-ci.org/AveryPratt/data-structures)
+[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures)
 
 This repository contains sample code for several classic data structures in Python.
 
