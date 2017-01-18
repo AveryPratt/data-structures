@@ -184,42 +184,124 @@ def test_preorder_traversal(new_bst):
     assert [8, 3, 1, 6, 10, 9] == result
 
 
+def test_preorder_traversal_empty(new_bst):
+    """Test preorder traversal on empty list."""
+    result = [x for x in new_bst[1].pre_order_traversal()]
+
+    assert [] == result
+
+
+def test_preorder_traversal_one_node(new_bst):
+    """Test preorder traversal on a list with one node."""
+    result = [x for x in new_bst[2].pre_order_traversal()]
+
+    assert [3] == result
+
+
+def test_preorder_traversal_unbalanced_right(new_bst):
+    """Test preorder traversal on a list with a right side larger than the left."""
+    result = [x for x in new_bst[3].pre_order_traversal()]
+
+    assert [1, 2, 3, 4, 5] == result
+
+
+def test_preorder_traversal_unbalanced_left(new_bst):
+    """Test preorder traversal on a list with a left side larger than the right."""
+    result = [x for x in new_bst[4].pre_order_traversal()]
+
+    assert [5, 4, 3, 2, 1] == result
+
+
 def test_post_traversal(new_bst):
     """Test post_order traversal."""
     result = [x for x in new_bst[0].post_order_traversal()]
     assert [1, 6, 3, 9, 10, 8] == result
 
 
+def test_post_traversal_empty(new_bst):
+    """Test postorder traversal on empty list."""
+    result = [x for x in new_bst[1].post_order_traversal()]
+    assert [] == result
+
+
+def test_post_traversal_one_node(new_bst):
+    """Test postorder traversal on a list with one node."""
+    result = [x for x in new_bst[2].post_order_traversal()]
+    assert [3] == result
+
+
+def test_post_traversal_unbalanced_right(new_bst):
+    """Test postorder traversal on a list with a right side larger than the left."""
+    result = [x for x in new_bst[3].post_order_traversal()]
+    assert [5, 4, 3, 2, 1] == result
+
+
+def test_post_traversal_unbalanced_left(new_bst):
+    """Test postorder traversal on a list with a left side larger than the right."""
+    result = [x for x in new_bst[4].post_order_traversal()]
+    assert [1, 2, 3, 4, 5] == result
+
+
 def test_inorder_traversal(new_bst):
     """Test inorder traversal."""
     result = [x for x in new_bst[0].in_order_traversal()]
-
     assert [1, 3, 6, 8, 9, 10] == result
 
 
 def test_inorder_traversal_empty(new_bst):
     """Test inorder traversal on empty list."""
     result = [x for x in new_bst[1].in_order_traversal()]
-
     assert result == []
 
 
 def test_inorder_traversal_one_node(new_bst):
     """Test inorder traversal on a list with one node."""
     result = [x for x in new_bst[2].in_order_traversal()]
-
     assert result == [3]
 
 
 def test_inorder_traversal_unbalanced_right(new_bst):
     """Test inorder traversal on a list with a right side larger than the left."""
     result = [x for x in new_bst[3].in_order_traversal()]
-
     assert result == [1, 2, 3, 4, 5]
 
 
 def test_inorder_traversal_unbalanced_left(new_bst):
     """Test inorder traversal on a list with a left side larger than the right."""
     result = [x for x in new_bst[4].in_order_traversal()]
+    assert result == [1, 2, 3, 4, 5]
+
+
+def test_breadth_first_traversal(new_bst):
+    """Test breadth-first traversal."""
+    result = [x for x in new_bst[0].breadth_first_traversal()]
+
+    assert result == [8, 3, 10, 1, 6, 9]
+
+
+def test_breadth_first_traversal_empty(new_bst):
+    """Test breadth-first traversal on empty list."""
+    result = [x for x in new_bst[1].breadth_first_traversal()]
+
+    assert result == []
+
+
+def test_breadth_first_traversal_one_node(new_bst):
+    """Test breadth-first traversal on a list with one node."""
+    result = [x for x in new_bst[2].breadth_first_traversal()]
+
+    assert result == [3]
+
+
+def test_breadth_first_traversal_unbalanced_right(new_bst):
+    """Test breadth-first traversal on a list with a right side larger than the left."""
+    result = [x for x in new_bst[3].breadth_first_traversal()]
 
     assert result == [1, 2, 3, 4, 5]
+
+
+def test_breadth_first_traversal_unbalanced_left(new_bst):
+    """Test breadth-first traversal on a list with a left side larger than the right."""
+    result = [x for x in new_bst[4].breadth_first_traversal()]
+
+    assert result == [5, 4, 3, 2, 1]
