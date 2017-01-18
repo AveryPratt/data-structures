@@ -306,8 +306,18 @@ def test_breadth_first_traversal_unbalanced_left(new_bst):
 
     assert result == [5, 4, 3, 2, 1]
 
-# def test_remove(new_bst):
-#     new_bst[2].remove(2)
 
-#     assert new_bst.root is None
+def test_remove_tree_one(new_bst):
+    """Remove root node of tree of one."""
+    new_bst[2].remove(3)
 
+    assert new_bst.root is None
+
+
+def test_remove_tree(new_bst):
+    """Test remove."""
+    new_bst[0].remove(3)
+
+    result = [x for x in new_bst[0].in_order_traversal()]
+
+    assert result == [8, 10, 1, 6, 9]
