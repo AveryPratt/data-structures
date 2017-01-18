@@ -53,23 +53,24 @@ class BinarySearchTree(object):
         """Remove a value and its node from the tree."""
         node = self.search(val)
         next_node = None
-        if node.left_child ^ node.right_child:
-            if node.left_child:
+        try:
+            if node.left_child and not node.right_child:
                 next_node = node.left_child
-            else:
+            elif node.right_child and not node.left_child:
                 next_node = node.right_child
-        elif node.left_child and node.right_child:
-            next_node = self.in_order_traversal(node)
-            next_node.left_child = node.left_child
-            next_node.right_child = node.right_child
-        if node is self.root:
-            self.root = next_node
-            return
-        elif node is node.parent.left_child:
-            node.parent.left_child = next_node
-        else:
-            node.parent.right_child = next_node
-        next_node.parent = node.parent
+            elif node.left_child and node.right_child:
+                next_node = self.in_order_traversal(node)
+                next_node.left_child = node.left_child
+                next_node.right_child = node.right_child
+            if node is self.root:
+                self.root = next_node
+            elif node is node.parent.left_child:
+                node.parent.left_child = next_node
+            else:
+                node.parent.right_child = next_node
+            next_node.parent = node.parent
+        except AttributeError:
+            return None
 
     def search(self, val):
         """Return the node in the tree with the given value."""

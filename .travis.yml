@@ -15,3 +15,8 @@ script:
 
 after_success:
   # - coveralls
+
+# safelist
+branches:
+  only:
+  - bst_remove
