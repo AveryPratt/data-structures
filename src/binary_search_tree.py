@@ -87,6 +87,8 @@ class BinarySearchTree(object):
     def breadth_first_traversal(self):
         """Traverse the list breadth-first and return a list of values."""
         cur_node = self.root
+        if cur_node is None:
+            return
         q = []
         q.append(cur_node)
         while len(q) > 0:

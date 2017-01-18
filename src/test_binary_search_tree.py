@@ -273,7 +273,35 @@ def test_inorder_traversal_unbalanced_left(new_bst):
 
 
 def test_breadth_first_traversal(new_bst):
-    """."""
+    """Test breadth-first traversal."""
     result = [x for x in new_bst[0].breadth_first_traversal()]
 
     assert result == [8, 3, 10, 1, 6, 9]
+
+
+def test_breadth_first_traversal_empty(new_bst):
+    """Test breadth-first traversal on empty list."""
+    result = [x for x in new_bst[1].breadth_first_traversal()]
+
+    assert result == []
+
+
+def test_breadth_first_traversal_one_node(new_bst):
+    """Test breadth-first traversal on a list with one node."""
+    result = [x for x in new_bst[2].breadth_first_traversal()]
+
+    assert result == [3]
+
+
+def test_breadth_first_traversal_unbalanced_right(new_bst):
+    """Test breadth-first traversal on a list with a right side larger than the left."""
+    result = [x for x in new_bst[3].breadth_first_traversal()]
+
+    assert result == [1, 2, 3, 4, 5]
+
+
+def test_breadth_first_traversal_unbalanced_left(new_bst):
+    """Test breadth-first traversal on a list with a left side larger than the right."""
+    result = [x for x in new_bst[4].breadth_first_traversal()]
+
+    assert result == [5, 4, 3, 2, 1]
