@@ -106,9 +106,10 @@ class BinarySearchTree(object):
             return self.root.right_child.balance_number - self.root.left_child.balance_number
         return 0
 
-    def breadth_first_traversal(self):
+    def breadth_first_traversal(self, cur_node=None):
         """Traverse the list breadth-first and return a list of values."""
-        cur_node = self.root
+        if cur_node is None:
+            cur_node = self.root
         if cur_node is None:
             return
         q = []
@@ -121,9 +122,10 @@ class BinarySearchTree(object):
             if cur_node.right_child:
                 q.append(cur_node.right_child)
 
-    def pre_order_traversal(self):
+    def pre_order_traversal(self, cur_node=None):
         """Traverse the list depth-first and return a list of values in pre-order (starting at the root)."""
-        cur_node = self.root
+        if cur_node is None:
+            cur_node = self.root
         if cur_node is None:
             return
         visited = []
@@ -151,9 +153,10 @@ class BinarySearchTree(object):
                 yield node.data
                 node = node.right_child
 
-    def post_order_traversal(self):
+    def post_order_traversal(self, cur_node=None):
         """Traverse the list depth-first and return a list of values in post-order (ending at the root)."""
-        cur_node = self.root
+        if cur_node is None:
+            cur_node = self.root
         visited = []
         last_node_visited = None
         while len(visited) > 0 or cur_node:
