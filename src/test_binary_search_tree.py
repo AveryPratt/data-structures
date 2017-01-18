@@ -109,7 +109,7 @@ def test_size_of_bst_of_one(new_bst):
     assert new_bst[2].size() == 1
 
 
-def test_size_is_increased_when_I_insert(new_bst):
+def test_size_is_increased_when_i_insert(new_bst):
     """Test size of bst increases when insert."""
     old_size = new_bst[0].size()
     new_bst[0].insert(0)
@@ -314,8 +314,8 @@ def test_remove_tree_one(new_bst):
     assert new_bst[2].root is None
 
 
-def test_remove_tree(new_bst):
-    """Test remove."""
+def test_remove_tree_node_two_children(new_bst):
+    """Test remove tree node with 2 children."""
     new_bst[0].remove(3)
 
     result = [x for x in new_bst[0].in_order_traversal()]
@@ -324,7 +324,7 @@ def test_remove_tree(new_bst):
 
 
 def test_remove_tree_node_no_children(new_bst):
-    """Test remove."""
+    """Test remove tree node with no children."""
     new_bst[0].remove(1)
 
     result = [x for x in new_bst[0].in_order_traversal()]
@@ -333,7 +333,7 @@ def test_remove_tree_node_no_children(new_bst):
 
 
 def test_remove_tree_node_only_left_child(new_bst):
-    """Test remove."""
+    """Test remove tree node with only a left child."""
     new_bst[0].remove(10)
 
     result = [x for x in new_bst[0].in_order_traversal()]
@@ -342,7 +342,7 @@ def test_remove_tree_node_only_left_child(new_bst):
 
 
 def test_remove_tree_node_only_right_child(new_bst):
-    """Test remove."""
+    """Test remove tree node with only a right child."""
     new_bst[0].insert(9.5)
     new_bst[0].remove(9)
 
