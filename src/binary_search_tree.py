@@ -86,7 +86,16 @@ class BinarySearchTree(object):
 
     def breadth_first_traversal(self):
         """Traverse the list breadth-first and return a list of values."""
-        pass
+        cur_node = self.root
+        q = []
+        q.append(cur_node)
+        while len(q) > 0:
+            cur_node = q.pop(0)
+            yield cur_node.data
+            if cur_node.left_child:
+                q.append(cur_node.left_child)
+            if cur_node.right_child:
+                q.append(cur_node.right_child)
 
     def pre_order_traversal(self):
         """Traverse the list depth-first and return a list of values in pre-order (starting at the root)."""
@@ -133,7 +142,6 @@ class BinarySearchTree(object):
                 else:
                     yield peek_node.data
                     last_node_visited = visited.pop()
-
 
     def _find(self, val, cur_node):
         """Recursively finds value into the tree."""

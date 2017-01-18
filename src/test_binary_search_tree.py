@@ -270,3 +270,10 @@ def test_inorder_traversal_unbalanced_left(new_bst):
     """Test inorder traversal on a list with a left side larger than the right."""
     result = [x for x in new_bst[4].in_order_traversal()]
     assert result == [1, 2, 3, 4, 5]
+
+
+def test_breadth_first_traversal(new_bst):
+    """."""
+    result = [x for x in new_bst[0].breadth_first_traversal()]
+
+    assert result == [8, 3, 10, 1, 6, 9]
