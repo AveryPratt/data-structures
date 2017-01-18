@@ -305,3 +305,8 @@ def test_breadth_first_traversal_unbalanced_left(new_bst):
     result = [x for x in new_bst[4].breadth_first_traversal()]
 
     assert result == [5, 4, 3, 2, 1]
+
+# def test_remove(new_bst):
+#     new_bst[2].remove(2)
+
+#     assert new_bst.root is None
