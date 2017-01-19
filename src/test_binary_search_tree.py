@@ -314,6 +314,12 @@ def test_remove_tree_one(new_bst):
     assert new_bst[2].root is None
 
 
+def test_remove_tree_node_no_children_size(new_bst):
+    """Test size remove tree node with no children."""
+    new_bst[2].remove(3)
+    assert new_bst[2].size() == 0
+
+
 def test_remove_tree_node_two_children(new_bst):
     """Test remove tree node with 2 children."""
     new_bst[0].remove(3)
@@ -330,6 +336,11 @@ def test_remove_tree_node_no_children(new_bst):
     result = [x for x in new_bst[0].in_order_traversal()]
 
     assert result == [3, 6, 8, 9, 10]
+
+def test_remove_tree_node_no_children_size(new_bst):
+    """Test size remove tree node with no children."""
+    new_bst[0].remove(1)
+    assert new_bst[0].size() == 5
 
 
 def test_remove_tree_node_only_left(new_bst):
@@ -385,5 +396,25 @@ def test_remove_root_from_full_tree(new_bst):
 
     result = [x for x in new_bst[0].in_order_traversal()]
 
-    # assert result == [9, 3, 10, 1, 6]
     assert result == [1, 3, 6, 9, 10]
+
+
+def test_remove_size_from_unbalanced_right(new_bst):
+    """Test size after, remove grandparent node."""
+    new_bst[3].remove(3)
+
+    assert new_bst[3].size() == 4
+
+
+def test_remove_from_unbalanced_left_size(new_bst):
+    """Test size after remove grandparent node."""
+    new_bst[4].remove(3)
+
+    assert new_bst[4].size() == 4
+
+
+def test_remove_root_from_full_tree_size(new_bst):
+    """Test size after remove root node form a full tree."""
+    new_bst[0].remove(8)
+
+    assert new_bst[0].size() == 5
