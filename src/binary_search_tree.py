@@ -53,6 +53,7 @@ class BinarySearchTree(object):
         """Remove a value and its node from the tree."""
         if self.size() == 1 and self.root.data is val:
             self.root = None
+            self.size_number -= 1
             return
         node = self.search(val)
         if node.left and not node.right:
@@ -67,6 +68,7 @@ class BinarySearchTree(object):
                     node.parent.right = node.left
             except AttributeError:
                 self.root = node.left
+            self.size_number -= 1
             return
 
         elif node.right and not node.left:
@@ -81,6 +83,7 @@ class BinarySearchTree(object):
                     node.parent.left = node.right
             except AttributeError:
                 self.root = node.right
+            self.size_number -= 1
             return
 
         nxt = None
@@ -98,6 +101,7 @@ class BinarySearchTree(object):
                     node.parent.left = None
             except AttributeError:
                 pass
+            self.size_number -= 1
             return
 
         self.remove(nxt.data)  # 9
