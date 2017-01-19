@@ -26,8 +26,8 @@ def test_initiate_node_children():
     """Test node children on init is None."""
     from binary_search_tree import Node
     node = Node(5)
-    assert node.right_child is None
-    assert node.left_child is None
+    assert node.right is None
+    assert node.left is None
 
 
 def test_initiate_bst(new_bst):
@@ -44,26 +44,26 @@ def test_insert_on_an_empty_bst(new_bst):
 def test_insert_larger_number_on_a_bst_of_one(new_bst):
     """Test insert on a bst of one is the right."""
     new_bst[2].insert(5)
-    assert new_bst[2].root.right_child.data == 5
+    assert new_bst[2].root.right.data == 5
 
 
 def test_insert_smaller_number_on_a_bst_of_one(new_bst):
     """Test insert on a bst of one is on the left when val< root."""
     new_bst[2].insert(1)
-    assert new_bst[2].root.left_child.data == 1
+    assert new_bst[2].root.left.data == 1
 
 
 def test_insert_small_number_on_a_bst(new_bst):
     """Test insert on a bst less than root."""
     new_bst[0].insert(0)
-    expected = new_bst[0].root.left_child.left_child.left_child
+    expected = new_bst[0].root.left.left.left
     assert expected.data == 0
 
 
 def test_insert_larger_number_on_a_bst(new_bst):
     """Test insert on a bst greater than root."""
     new_bst[0].insert(11)
-    expected = new_bst[0].root.right_child.right_child
+    expected = new_bst[0].root.right.right
     assert expected.data == 11
 
 
@@ -71,7 +71,7 @@ def test_insert_a_number_already_there(new_bst):
     """Test insert does nothing."""
     new_bst[2].insert(3)
     assert new_bst[2].root.data == 3
-    assert new_bst[2].root.right_child is None and new_bst[2].root.left_child is None
+    assert new_bst[2].root.right is None and new_bst[2].root.left is None
 
 
 def test_search_empty(new_bst):
@@ -86,7 +86,7 @@ def test_search_root_found(new_bst):
 
 def test_search_child_found(new_bst):
     """Test searching for a value in tree returns correct node."""
-    assert new_bst[0].search(6) is new_bst[0].root.left_child.right_child
+    assert new_bst[0].search(6) is new_bst[0].root.left.right
 
 
 def test_search_not_found(new_bst):
@@ -332,7 +332,7 @@ def test_remove_tree_node_no_children(new_bst):
     assert result == [3, 6, 8, 9, 10]
 
 
-def test_remove_tree_node_only_left_child(new_bst):
+def test_remove_tree_node_only_left(new_bst):
     """Test remove tree node with only a left child."""
     new_bst[0].remove(10)
 
@@ -341,7 +341,7 @@ def test_remove_tree_node_only_left_child(new_bst):
     assert result == [1, 3, 6, 8, 9]
 
 
-def test_remove_tree_node_only_left_child_breadth(new_bst):
+def test_remove_tree_node_only_left_breadth(new_bst):
     """Test remove tree node with only a left child."""
     new_bst[0].insert(8.5)
 
@@ -351,7 +351,7 @@ def test_remove_tree_node_only_left_child_breadth(new_bst):
     assert result == [8, 3, 9, 1, 6, 8.5]
 
 
-def test_remove_tree_node_only_right_child(new_bst):
+def test_remove_tree_node_only_right(new_bst):
     """Test remove tree node with only a right child."""
     new_bst[0].insert(9.5)
     new_bst[0].remove(9)
@@ -379,11 +379,11 @@ def test_remove_from_unbalanced_left(new_bst):
     assert result == [1, 2, 4, 5]
 
 
-# def test_remove_root_from_full_tree(new_bst):
-#     """Test remove root node form a full tree."""
-#     new_bst[0].remove(8)
+def test_remove_root_from_full_tree(new_bst):
+    """Test remove root node form a full tree."""
+    new_bst[0].remove(8)
 
-#     result = [x for x in new_bst[0].in_order_traversal()]
+    result = [x for x in new_bst[0].in_order_traversal()]
 
-#     # assert result == [9, 3, 10, 1, 6]
-#     assert result == [1, 3, 6, 9, 10]
+    # assert result == [9, 3, 10, 1, 6]
+    assert result == [1, 3, 6, 9, 10]

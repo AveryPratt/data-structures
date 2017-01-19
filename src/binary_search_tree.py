@@ -4,12 +4,12 @@
 class Node(object):
     """."""
 
-    def __init__(self, data, parent=None, left_child=None, right_child=None):
+    def __init__(self, data, parent=None, left=None, right=None):
         """."""
         self.data = data
         self.parent = parent
-        self.left_child = left_child
-        self.right_child = right_child
+        self.left = left
+        self.right = right
         self.balance_number = 0
 
 
@@ -52,35 +52,39 @@ class BinarySearchTree(object):
     def remove(self, val):
         """Remove a value and its node from the tree."""
         node = self.search(val)
-        next_node = None
+        nxt = None
         try:
-            if node.left_child and not node.right_child:
-                next_node = node.left_child
-            elif node.right_child and not node.left_child:
-                next_node = node.right_child
-            elif node.left_child and node.right_child:
+            if node.left and not node.right:
+                nxt = node.left
+            elif node.right and not node.left:
+                nxt = node.right
+            elif node.left and node.right:
                 gen = self.in_order_traversal()
                 path = None
                 while path is not val:
                     path = next(gen)
-                next_node = self.search(next(gen))
-                # self.remove(next_node.data)
-                if next_node is not node.left_child:
-                    next_node.left_child = node.left_child
-                    next_node.left_child.parent = next_node
-                if next_node is not node.right_child:
-                    next_node.right_child = node.right_child
-                    next_node.right_child.parent = next_node
-            if node is self.root:
-                self.root = next_node
-                self.root.parent = None
+                nxt = self.search(next(gen))
+                # self.remove(nxt.data)
                 # import pdb; pdb.set_trace()
+                if nxt is nxt.parent.left:
+                    nxt.parent.left = nxt.right
+                if nxt is nxt.parent.right:
+                    nxt.parent.right = nxt.left
+                if nxt is not node.left:
+                    nxt.left = node.left
+                    nxt.left.parent = nxt
+                if nxt is not node.right:
+                    nxt.right = node.right
+                    nxt.right.parent = nxt
+            if node is self.root:
+                self.root = nxt
+                self.root.parent = None
                 return
-            elif node is node.parent.left_child:
-                node.parent.left_child = next_node
+            elif node is node.parent.left:
+                node.parent.left = nxt
             else:
-                node.parent.right_child = next_node
-            next_node.parent = node.parent
+                node.parent.right = nxt
+            nxt.parent = node.parent
 
         except AttributeError:
             return None
@@ -113,11 +117,11 @@ class BinarySearchTree(object):
         ...of the tree. (negative value if left is longer)
         """
         while self.root:
-            if not self.root.left_child:
-                return self.root.right_child.balance_number - 0
-            if not self.root.right_child:
-                return 0 - self.root.left_child.balance_number
-            return self.root.right_child.balance_number - self.root.left_child.balance_number
+            if not self.root.left:
+                return self.root.right.balance_number - 0
+            if not self.root.right:
+                return 0 - self.root.left.balance_number
+            return self.root.right.balance_number - self.root.left.balance_number
         return 0
 
     def breadth_first_traversal(self, cur_node=None):
@@ -131,10 +135,10 @@ class BinarySearchTree(object):
         while len(q) > 0:
             cur_node = q.pop(0)
             yield cur_node.data
-            if cur_node.left_child:
-                q.append(cur_node.left_child)
-            if cur_node.right_child:
-                q.append(cur_node.right_child)
+            if cur_node.left:
+                q.append(cur_node.left)
+            if cur_node.right:
+                q.append(cur_node.right)
 
     def pre_order_traversal(self, cur_node=None):
         """Traverse the list depth-first and return a list of values in pre-order (starting at the root)."""
@@ -148,10 +152,10 @@ class BinarySearchTree(object):
         while len(visited) > 0:
             cur_node = visited.pop()
             yield cur_node.data
-            if cur_node.right_child:
-                visited.append(cur_node.right_child)
-            if cur_node.left_child:
-                visited.append(cur_node.left_child)
+            if cur_node.right:
+                visited.append(cur_node.right)
+            if cur_node.left:
+                visited.append(cur_node.left)
 
     def in_order_traversal(self, node=None):
         """Traverse the list depth-first and return a list of values in sorted order."""
@@ -161,11 +165,11 @@ class BinarySearchTree(object):
         while len(s) > 0 or node:
             if node:
                 s.append(node)
-                node = node.left_child
+                node = node.left
             else:
                 node = s.pop()
                 yield node.data
-                node = node.right_child
+                node = node.right
 
     def post_order_traversal(self, cur_node=None):
         """Traverse the list depth-first and return a list of values in post-order (ending at the root)."""
@@ -176,11 +180,11 @@ class BinarySearchTree(object):
         while len(visited) > 0 or cur_node:
             if cur_node:
                 visited.append(cur_node)
-                cur_node = cur_node.left_child
+                cur_node = cur_node.left
             else:
                 peek_node = visited[-1]
-                if peek_node.right_child and last_node_visited != peek_node.right_child:
-                    cur_node = peek_node.right_child
+                if peek_node.right and last_node_visited != peek_node.right:
+                    cur_node = peek_node.right
                 else:
                     yield peek_node.data
                     last_node_visited = visited.pop()
@@ -190,34 +194,34 @@ class BinarySearchTree(object):
         if val == cur_node.data:
             return cur_node
         elif val > cur_node.data:
-            if not cur_node.right_child:
+            if not cur_node.right:
                 return None
-            return self._find(val, cur_node.right_child)
+            return self._find(val, cur_node.right)
         elif val < cur_node.data:
-            if not cur_node.left_child:
+            if not cur_node.left:
                 return None
-            return self._find(val, cur_node.left_child)
+            return self._find(val, cur_node.left)
 
     def _sink(self, val, cur_node):
         """Recursively inserts value into the tree."""
         if val > cur_node.data:
-            if not cur_node.right_child:
-                cur_node.right_child = Node(val, cur_node)
+            if not cur_node.right:
+                cur_node.right = Node(val, cur_node)
                 self.size_number += 1
                 if cur_node.balance_number == 0:
                     cur_node.balance_number = 1
             else:
-                count = self._sink(val, cur_node.right_child)
+                count = self._sink(val, cur_node.right)
                 if cur_node.balance_number <= count:
                     cur_node.balance_number += 1
         elif val < cur_node.data:
-            if not cur_node.left_child:
-                cur_node.left_child = Node(val, cur_node)
+            if not cur_node.left:
+                cur_node.left = Node(val, cur_node)
                 self.size_number += 1
                 if cur_node.balance_number == 0:
                     cur_node.balance_number = 1
             else:
-                count = self._sink(val, cur_node.left_child)
+                count = self._sink(val, cur_node.left)
                 if cur_node.balance_number <= count:
                     cur_node.balance_number += 1
         return cur_node.balance_number
