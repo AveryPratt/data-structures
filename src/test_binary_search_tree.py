@@ -17,14 +17,14 @@ def new_bst():
 
 def test_initiate_node_data():
     """Test node data on init."""
-    from binary_search_tree import Node
+    from src.binary_search_tree import Node
     node = Node(5)
     assert node.data == 5
 
 
 def test_initiate_node_children():
     """Test node children on init is None."""
-    from binary_search_tree import Node
+    from src.binary_search_tree import Node
     node = Node(5)
     assert node.right is None
     assert node.left is None

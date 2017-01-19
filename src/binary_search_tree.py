@@ -56,10 +56,7 @@ class BinarySearchTree(object):
             return
         node = self.search(val)
         if node.left and not node.right:
-            try:
-                node.left.parent = node.parent
-            except AttributeError:
-                pass
+            node.left.parent = node.parent
             try:
                 if node.parent.left is node:
                     node.parent.left = node.left
@@ -70,10 +67,7 @@ class BinarySearchTree(object):
             return
 
         elif node.right and not node.left:
-            try:
-                node.right.parent = node.parent
-            except AttributeError:
-                pass
+            node.right.parent = node.parent
             try:
                 if node.parent.right is node:
                     node.parent.right = node.right
