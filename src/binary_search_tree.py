@@ -62,21 +62,26 @@ class BinarySearchTree(object):
                 gen = self.in_order_traversal()
                 path = None
                 while path is not val:
-                    path = gen.next()
-                next_node = self.search(gen.next())
+                    path = next(gen)
+                next_node = self.search(next(gen))
+                # self.remove(next_node.data)
                 if next_node is not node.left_child:
                     next_node.left_child = node.left_child
+                    next_node.left_child.parent = next_node
                 if next_node is not node.right_child:
                     next_node.right_child = node.right_child
+                    next_node.right_child.parent = next_node
             if node is self.root:
                 self.root = next_node
-                import pdb; pdb.set_trace()
+                self.root.parent = None
+                # import pdb; pdb.set_trace()
                 return
             elif node is node.parent.left_child:
                 node.parent.left_child = next_node
             else:
                 node.parent.right_child = next_node
             next_node.parent = node.parent
+
         except AttributeError:
             return None
 
