@@ -337,7 +337,7 @@ def test_remove_tree_node_no_children(new_bst):
 
     assert result == [3, 6, 8, 9, 10]
 
-def test_remove_tree_node_no_children_size(new_bst):
+def test_remove_tree_node_size(new_bst):
     """Test size remove tree node with no children."""
     new_bst[0].remove(1)
     assert new_bst[0].size() == 5

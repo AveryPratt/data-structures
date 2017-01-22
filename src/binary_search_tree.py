@@ -51,35 +51,13 @@ class BinarySearchTree(object):
 
     def remove(self, val):
         """Remove a value and its node from the tree."""
-        if self.size() == 1 and self.root.data is val:
-            self.root = None
-            self.size_number -= 1
-            return
         node = self.search(val)
         if node.left and not node.right:
-            node.left.parent = node.parent
-            try:
-                if node.parent.left is node:
-                    node.parent.left = node.left
-                else:
-                    node.parent.right = node.left
-            except AttributeError:
-                self.root = node.left
-            self.size_number -= 1
+            self._remove_parent(node.left)
             return
-
         elif node.right and not node.left:
-            node.right.parent = node.parent
-            try:
-                if node.parent.right is node:
-                    node.parent.right = node.right
-                else:
-                    node.parent.left = node.right
-            except AttributeError:
-                self.root = node.right
-            self.size_number -= 1
+            self._remove_parent(node.right)
             return
-
         nxt = None
         if node.left and node.right:
             gen = self.in_order_traversal()
@@ -89,37 +67,42 @@ class BinarySearchTree(object):
             nxt = self.search(next(gen))
         if nxt is None:
             try:
-                if node.parent.right is node:
-                    node.parent.right = None
-                else:
-                    node.parent.left = None
+                self._redirect(node, None)
             except AttributeError:
-                pass
+                self.root = None
             self.size_number -= 1
             return
-
-        self.remove(nxt.data)  # 9
+        self.remove(nxt.data)
         nxt.left = node.left
         nxt.right = node.right
         nxt.parent = node.parent
         if node is self.root:
             self.root = nxt
-        try:
+        if nxt.left:
             nxt.left.parent = nxt
-        except AttributeError:
-            pass
-        try:
+        if nxt.right:
             nxt.right.parent = nxt
-        except AttributeError:
-            pass
-
-        try:
+        if nxt.parent:
             if nxt.parent.right is node:
                 nxt.parent.right = nxt
             else:
                 nxt.parent.left = nxt
+
+    def _remove_parent(self, child):
+        try:
+            self._redirect(child.parent, child)
+            child.parent = child.parent.parent
         except AttributeError:
-            pass
+            self.root = child
+        self.size_number -= 1
+        return
+
+    def _redirect(self, node1, node2):
+        if node1.parent.right is node1:
+            node1.parent.right = node2
+        else:
+            node1.parent.left = node2
+
 
     def search(self, val):
         """Return the node in the tree with the given value."""
