@@ -77,6 +77,8 @@ Binary Search Tree supports the following methods:
 
 - **insert(self, val)** 
     will insert the value val into the BST. If val is already present, it will be ignored.
+- **remove(self, val)** 
+    will remove the node containing the value val from the BST. If val is not in the tree, nothing will happen.
 - **search(self, val)**
     will return the node containing that value, else None
 - **size(self)**

@@ -418,3 +418,10 @@ def test_remove_root_from_full_tree_size(new_bst):
     new_bst[0].remove(8)
 
     assert new_bst[0].size() == 5
+
+
+def test_remove_node_not_in_tree(new_bst):
+    """Test that removing a non-existant node does not alter tree."""
+    new_bst[0].remove(11)
+
+    assert new_bst[0].size() == 6

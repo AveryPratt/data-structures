@@ -52,6 +52,8 @@ class BinarySearchTree(object):
     def remove(self, val):
         """Remove a value and its node from the tree."""
         node = self.search(val)
+        if not node:
+            return
         if node.left and not node.right:
             self._remove_parent(node.left)
             return
