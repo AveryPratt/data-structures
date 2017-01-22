@@ -425,3 +425,18 @@ def test_remove_node_not_in_tree(new_bst):
     new_bst[0].remove(11)
 
     assert new_bst[0].size() == 6
+
+
+def test_rotation_left(new_bst):
+    """Test that rotating a node rebalances tree appropriately."""
+    new_bst[0].rotate(10)
+    result = [x for x in new_bst[0].breadth_first_traversal()]
+
+    assert result == [10, 8, 3, 9, 1, 6]
+
+def test_rotation_right(new_bst):
+    """Test that rotation a node rebalances tree appropriately."""
+    new_bst[0].rotate(3)
+    result = [x for x in new_bst[0].breadth_first_traversal()]
+
+    assert result == [3, 1, 8, 6, 10, 9]
