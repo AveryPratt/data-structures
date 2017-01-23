@@ -185,12 +185,14 @@ class BinarySearchTree(object):
             node.left = n_par
         else:
             node.right = n_par
+        node.parent = n_par.parent
         n_par.parent = node
         if is_left:
             n_par.right = child
         else:
             n_par.left = child
         curr = n_par
+
         while curr:
             if curr.left:
                 left_number = curr.left.balance_number
@@ -208,7 +210,7 @@ class BinarySearchTree(object):
                 curr.balance_number = max_balance_number + 1
             else:
                 curr.balance_number = 0
-            curr = n_par.parent
+            curr = curr.parent
 
     def breadth_first_traversal(self, cur_node=None):
         """Traverse the list breadth-first and return a list of values."""
