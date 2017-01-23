@@ -63,12 +63,7 @@ class BinarySearchTree(object):
             self.size_number -= 1
             return
         nxt = None
-        if node.left and node.right:
-            gen = self.in_order_traversal()
-            path = None
-            while path is not val:
-                path = next(gen)
-            nxt = self.search(next(gen))
+        nxt = self._nxt_inorder(nxt, node, val)
         if nxt is None:
             try:
                 self._redirect(node, None)
@@ -77,6 +72,10 @@ class BinarySearchTree(object):
             self.size_number -= 1
             return
         self.remove(nxt.data)
+        self._replace_node(nxt, node)
+
+    def _replace_node(self, nxt, node):
+        """Helper to replace the connections to node to nxt."""
         nxt.left = node.left
         nxt.right = node.right
         nxt.parent = node.parent
@@ -92,7 +91,18 @@ class BinarySearchTree(object):
             else:
                 nxt.parent.left = nxt
 
+    def _nxt_inorder(self, nxt, node, val):
+        """Get the next node in the inorder traversal."""
+        if node.left and node.right:
+            gen = self.in_order_traversal()
+            path = None
+            while path is not val:
+                path = next(gen)
+            nxt = self.search(next(gen))
+        return nxt
+
     def _remove_parent(self, child):
+        """Remove parent node."""
         try:
             self._redirect(child.parent, child)
             child.parent = child.parent.parent
@@ -101,11 +111,11 @@ class BinarySearchTree(object):
         return
 
     def _redirect(self, node1, node2):
+        """Redirect from node1 to node2."""
         if node1.parent.right is node1:
             node1.parent.right = node2
         else:
             node1.parent.left = node2
-
 
     def search(self, val):
         """Return the node in the tree with the given value."""
