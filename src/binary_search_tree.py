@@ -144,13 +144,13 @@ class BinarySearchTree(object):
 
         ...of the tree. (negative value if left is longer)
         """
-        while self.root:
-            if not self.root.left:
-                return self.root.right.balance_number - 0
-            if not self.root.right:
-                return 0 - self.root.left.balance_number
-            return self.root.right.balance_number - self.root.left.balance_number
-        return 0
+        if not self.root or (not self.root.left and not self.root.right):
+            return 0
+        elif not self.root.left:
+            return self.root.right.balance_number
+        elif not self.root.right:
+            return -self.root.left.balance_number
+        return self.root.right.balance_number - self.root.left.balance_number
 
     def rotate(self, val):
         """Replaces node's parent with node, and rebalances the children of both."""
@@ -286,3 +286,5 @@ if __name__ == '__main__':
         bst.insert(x)
     print(bst.balance())
     print(bst.root.right.left.balance_number)
+    bst2 = BinarySearchTree(1)
+    print(bst2.balance())
