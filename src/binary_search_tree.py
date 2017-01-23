@@ -156,16 +156,23 @@ class BinarySearchTree(object):
         """Replaces node's parent with node, and rebalances the children of both."""
         node = self.search(val)
         n_par = node.parent
-        is_left = n_par.right == node
+        if n_par:
+            is_left = n_par.right == node
+        else:
+            raise ValueError("cannot rotate the root node of the tree.")
         child = node.left if is_left else node.right
         self._remove_parent(node)
-        self._redirect(child, n_par)
+        if child:
+            self._redirect(child, n_par)
+        elif is_left:
+            node.left = n_par
+        else:
+            node.right = n_par
         n_par.parent = node
         if is_left:
             n_par.right = child
         else:
             n_par.left = child
-        child.parent = n_par
 
     def breadth_first_traversal(self, cur_node=None):
         """Traverse the list breadth-first and return a list of values."""
