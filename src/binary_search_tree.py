@@ -268,3 +268,14 @@ class BinarySearchTree(object):
                 if cur_node.balance_number <= count:
                     cur_node.balance_number += 1
         return cur_node.balance_number
+
+
+
+if __name__ == '__main__':
+    bst = BinarySearchTree([8, 3, 10, 1, 6, 9])
+    print(bst.balance())
+    print(bst.root.right.left.balance_number)
+    for x in [12, 13, 14, 9.5, 15, 16, 17]:
+        bst.insert(x)
+    print(bst.balance())
+    print(bst.root.right.left.balance_number)
