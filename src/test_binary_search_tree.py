@@ -429,6 +429,7 @@ def test_remove_node_not_in_tree(new_bst):
 
 def test_rotation_left(new_bst):
     """Test that rotating a node rebalances tree appropriately."""
+    # import pdb; pdb.set_trace()
     new_bst[0].rotate(10)
     result = [x for x in new_bst[0].breadth_first_traversal()]
 

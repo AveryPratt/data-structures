@@ -74,6 +74,20 @@ class BinarySearchTree(object):
         self.remove(nxt.data)
         self._replace_node(nxt, node)
 
+    def _rebalance(self, val):
+        """Re-balance tree after node insertion or deletion."""
+        node = self.search(val)
+        self._rebalance(node.left)
+        self._rebalance(node.right)
+        if node.balance_number > 1:
+            if node.right.balance_number == -1:
+                self.rotate(node.right.left)
+            self.rotate(node.right)
+        elif node.balance_number < -1:
+            if node.left.balance_number == 1:
+                self.rotate(node.left.right)
+            self.rotate(node.left)
+
     def _replace_node(self, nxt, node):
         """Helper to replace the connections to node to nxt."""
         nxt.left = node.left
@@ -144,22 +158,25 @@ class BinarySearchTree(object):
 
         ...of the tree. (negative value if left is longer)
         """
-        while self.root:
-            if not self.root.left:
-                return self.root.right.balance_number - 0
-            if not self.root.right:
-                return 0 - self.root.left.balance_number
-            return self.root.right.balance_number - self.root.left.balance_number
-        return 0
+        if not self.root or (not self.root.left and not self.root.right):
+            return 0
+        elif not self.root.left:
+            return self.root.right.balance_number
+        elif not self.root.right:
+            return -self.root.left.balance_number
+        return self.root.right.balance_number - self.root.left.balance_number
 
     def rotate(self, val):
-        """Replaces node's parent with node, and rebalances the children of both."""
+        """Replace node's parent with node...
+
+        ...and rebalances the children of both.
+        """
         node = self.search(val)
         n_par = node.parent
         if n_par:
             is_left = n_par.right == node
         else:
-            raise ValueError("cannot rotate the root node of the tree.")
+            raise ValueError("Cannot rotate the root node of the tree.")
         child = node.left if is_left else node.right
         self._remove_parent(node)
         if child:
@@ -168,11 +185,32 @@ class BinarySearchTree(object):
             node.left = n_par
         else:
             node.right = n_par
+        node.parent = n_par.parent
         n_par.parent = node
         if is_left:
             n_par.right = child
         else:
             n_par.left = child
+        curr = n_par
+
+        while curr:
+            if curr.left:
+                left_number = curr.left.balance_number
+            else:
+                left_number = 0
+            if curr.right:
+                right_number = curr.right.balance_number
+            else:
+                right_number = 0
+            max_balance_number = max(
+                left_number,
+                right_number,
+            )
+            if curr.left or curr.right:
+                curr.balance_number = max_balance_number + 1
+            else:
+                curr.balance_number = 0
+            curr = curr.parent
 
     def breadth_first_traversal(self, cur_node=None):
         """Traverse the list breadth-first and return a list of values."""
@@ -191,7 +229,10 @@ class BinarySearchTree(object):
                 q.append(cur_node.right)
 
     def pre_order_traversal(self, cur_node=None):
-        """Traverse the list depth-first and return a list of values in pre-order (starting at the root)."""
+        """Traverse the list depth-first...
+
+        ... and return a list of values in pre-order (starting at the root).
+        """
         if cur_node is None:
             cur_node = self.root
         if cur_node is None:
@@ -208,7 +249,10 @@ class BinarySearchTree(object):
                 visited.append(cur_node.left)
 
     def in_order_traversal(self, node=None):
-        """Traverse the list depth-first and return a list of values in sorted order."""
+        """Traverse the list depth-first...
+
+        ...and return a list of values in sorted order.
+        """
         if node is None:
             node = self.root
         s = []
@@ -222,7 +266,10 @@ class BinarySearchTree(object):
                 node = node.right
 
     def post_order_traversal(self, cur_node=None):
-        """Traverse the list depth-first and return a list of values in post-order (ending at the root)."""
+        """Traverse the list depth-first...
+
+        ...and return a list of values in post-order (ending at the root).
+        """
         if cur_node is None:
             cur_node = self.root
         visited = []
@@ -275,3 +322,15 @@ class BinarySearchTree(object):
                 if cur_node.balance_number <= count:
                     cur_node.balance_number += 1
         return cur_node.balance_number
+
+
+if __name__ == '__main__':
+    bst = BinarySearchTree([8, 3, 10, 1, 6, 9])
+    print(bst.balance())
+    print(bst.root.right.left.balance_number)
+    for x in [12, 13, 14, 9.5, 15, 16, 17]:
+        bst.insert(x)
+    print(bst.balance())
+    print(bst.root.right.left.balance_number)
+    bst2 = BinarySearchTree(1)
+    print(bst2.balance())
