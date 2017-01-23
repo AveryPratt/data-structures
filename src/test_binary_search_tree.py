@@ -434,6 +434,7 @@ def test_rotation_left(new_bst):
 
     assert result == [10, 8, 3, 9, 1, 6]
 
+
 def test_rotation_right(new_bst):
     """Test that rotation a node rebalances tree appropriately."""
     new_bst[0].rotate(3)
@@ -441,10 +442,12 @@ def test_rotation_right(new_bst):
 
     assert result == [3, 1, 8, 6, 10, 9]
 
+
 def test_rotation_root(new_bst):
     """Test that rotation a node rebalances tree appropriately."""
     with pytest.raises(ValueError):
         new_bst[0].rotate(8)
+
 
 def test_rotation_leaf_right(new_bst):
     """Test that rotation a node rebalances tree appropriately."""
@@ -452,6 +455,7 @@ def test_rotation_leaf_right(new_bst):
     result = [x for x in new_bst[0].breadth_first_traversal()]
 
     assert result == [8, 6, 10, 3, 9, 1]
+
 
 def test_rotation_leaf_left(new_bst):
     """Test that rotation a node rebalances tree appropriately."""
