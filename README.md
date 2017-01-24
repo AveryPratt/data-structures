@@ -89,3 +89,21 @@ Binary Search Tree supports the following methods:
     will return True if val is in the BST, False if not.
 - **balance(self)**
     will return an integer, positive or negative that represents how well balanced the tree is. Trees which are higher on the left than the right should return a positive value, trees which are higher on the right than the left should return a negative value. An ideally-balanced tree should return 0.
+
+
+## Hash Table:
+
+**Module:** hash_table.py
+
+**Tests:** test_hash_table.py
+
+**Resources Used:** 
+http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx
+https://codefellows.github.io/sea-python-401d5/assignments/hash_table.html
+https://en.wikipedia.org/wiki/Hash_tree
+
+Binary Search Tree supports the following methods:
+
+- get(key) - should return the value stored with the given key, O(n)
+- set(key, val) - should store the given val using the given key, O(1) time
+- _hash(key) - should hash the key provided (note that this is an internal api)
