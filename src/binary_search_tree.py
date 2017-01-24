@@ -76,21 +76,32 @@ class BinarySearchTree(object):
 
     def _rebalance(self, val=None):
         """Re-balance tree after node insertion or deletion."""
-        if val == 1:
-            import pdb; pdb.set_trace()
         node = self.search(val)
-        if not node:
-            return
-        self._rebalance(node.left)
-        self._rebalance(node.right)
-        if node.balance_number > 1:
-            if node.right.balance_number == -1:
+        if node is None:
+            node = self.root
+            if self.root is None:
+                return
+        try:
+            self._rebalance(node.left.data)
+        except AttributeError:
+            pass
+        try:
+            self._rebalance(node.right.data)
+        except AttributeError:
+            pass
+        if self.balance(node) > 1:
+            if self.balance(node.right) == -1:
                 self.rotate(node.right.left.data)
             self.rotate(node.right.data)
-        elif node.balance_number < -1:
-            if node.left.balance_number == 1:
+        elif self.balance(node) < -1:
+            if self.balance(node.left) == 1:
                 self.rotate(node.left.right.data)
             self.rotate(node.left.data)
+        result = [x for x in self.breadth_first_traversal()]
+        for num in result:
+            print(num)
+        print()
+        print()
 
     def _replace_node(self, nxt, node):
         """Helper to replace the connections to node to nxt."""
@@ -157,18 +168,22 @@ class BinarySearchTree(object):
         """Return a boolean determining if the value is already in the tree."""
         return False if not self.search(val) else True
 
-    def balance(self):
+    def balance(self, node=None):
         """Return the difference in length between the left and right sides...
 
         ...of the tree. (negative value if left is longer)
         """
-        if not self.root or (not self.root.left and not self.root.right):
+        if node is None:
+            node = self.root
+            if self.root is None:
+                return 0
+        if not node.left and not node.right:
             return 0
-        elif not self.root.left:
-            return self.root.right.balance_number
-        elif not self.root.right:
-            return -self.root.left.balance_number
-        return self.root.right.balance_number - self.root.left.balance_number
+        elif not node.left:
+            return node.right.balance_number
+        elif not node.right:
+            return -node.left.balance_number
+        return node.right.balance_number - node.left.balance_number
 
     def rotate(self, val):
         """Replace node's parent with node...
