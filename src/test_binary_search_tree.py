@@ -483,7 +483,6 @@ def test_rebalance_one_node_tree(new_bst):
 
 def test_rebalance_unbalanced_right_tree(new_bst):
     """Test that rebalancing an unbalanced tree reorders the nodes so it is balanced."""
-    import pdb; pdb.set_trace()
     new_bst[3]._rebalance(1)
     result = [x for x in new_bst[3].breadth_first_traversal()]
 
