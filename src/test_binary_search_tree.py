@@ -429,7 +429,6 @@ def test_remove_node_not_in_tree(new_bst):
 
 def test_rotation_left(new_bst):
     """Test that rotating a node rebalances tree appropriately."""
-    # import pdb; pdb.set_trace()
     new_bst[0].rotate(10)
     result = [x for x in new_bst[0].breadth_first_traversal()]
 
@@ -464,3 +463,28 @@ def test_rotation_leaf_left(new_bst):
     result = [x for x in new_bst[0].breadth_first_traversal()]
 
     assert result == [8, 3, 9, 1, 6, 10]
+
+
+def test_rebalance_empty_tree(new_bst):
+    """Test that rebalancing an empty tree does nothing."""
+    new_bst[1]._rebalance()
+    result = [x for x in new_bst[1].breadth_first_traversal()]
+
+    assert result == []
+
+
+def test_rebalance_one_node_tree(new_bst):
+    """Test that rebalancing an empty tree does nothing."""
+    new_bst[2]._rebalance()
+    result = [x for x in new_bst[2].breadth_first_traversal()]
+
+    assert result == [3]
+
+
+def test_rebalance_unbalanced_right_tree(new_bst):
+    """Test that rebalancing an unbalanced tree reorders the nodes so it is balanced."""
+    import pdb; pdb.set_trace()
+    new_bst[3]._rebalance(1)
+    result = [x for x in new_bst[3].breadth_first_traversal()]
+
+    assert result == [2, 1, 4, 3, 5]

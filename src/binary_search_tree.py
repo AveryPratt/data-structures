@@ -74,19 +74,23 @@ class BinarySearchTree(object):
         self.remove(nxt.data)
         self._replace_node(nxt, node)
 
-    def _rebalance(self, val):
+    def _rebalance(self, val=None):
         """Re-balance tree after node insertion or deletion."""
+        if val == 1:
+            import pdb; pdb.set_trace()
         node = self.search(val)
+        if not node:
+            return
         self._rebalance(node.left)
         self._rebalance(node.right)
         if node.balance_number > 1:
             if node.right.balance_number == -1:
-                self.rotate(node.right.left)
-            self.rotate(node.right)
+                self.rotate(node.right.left.data)
+            self.rotate(node.right.data)
         elif node.balance_number < -1:
             if node.left.balance_number == 1:
-                self.rotate(node.left.right)
-            self.rotate(node.left)
+                self.rotate(node.left.right.data)
+            self.rotate(node.left.data)
 
     def _replace_node(self, nxt, node):
         """Helper to replace the connections to node to nxt."""
