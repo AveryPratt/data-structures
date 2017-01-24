@@ -23,3 +23,8 @@ def test_hash_table_get():
     my_table = HashTable(10)
     my_table.set("hello", "value")
     assert my_table.get("hello") == ["value"]
+
+def test_hash_table_xor():
+    my_table = HashTable(10, "xor")
+    my_table.set("hello", "value")
+    assert my_table.get("hello") == ["value"]
