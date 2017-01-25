@@ -107,3 +107,8 @@ Binary Search Tree supports the following methods:
 - get(key) - should return the value stored with the given key, O(n)
 - set(key, val) - should store the given val using the given key, O(1) time
 - _hash(key) - should hash the key provided (note that this is an internal api)
+
+Hashing Functions our Hash Table supports:
+
+- Additive hash: simple algorithm for hashing a string, by adding all of the characters together and then force the range into something suitable for lookup with the remainder of division.
+- XOR: Instead of adding together the bytes of an object as the additive hash does, the XOR hash repeatedly folds the bytes together to produce a seemingly random hash value.
