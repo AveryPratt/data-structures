@@ -48,6 +48,7 @@ class BinarySearchTree(object):
             self.size_number += 1
         else:
             self._sink(val, self.root)
+        # check parent from node, until unbalanced.
 
     def remove(self, val):
         """Remove a value and its node from the tree."""
@@ -74,6 +75,8 @@ class BinarySearchTree(object):
         self.remove(nxt.data)
         self._replace_node(nxt, node)
 
+        #  check balance on parent of the node we just removed
+
     def _rebalance(self, val=None):
         """Re-balance tree after node insertion or deletion."""
         node = self.search(val)
@@ -90,18 +93,18 @@ class BinarySearchTree(object):
         except AttributeError:
             pass
         if self.balance(node) > 1:
-            if self.balance(node.right) == -1:
+            if self.balance(node.right) == -1: # should this be > 0?
                 self.rotate(node.right.left.data)
             self.rotate(node.right.data)
         elif self.balance(node) < -1:
             if self.balance(node.left) == 1:
                 self.rotate(node.left.right.data)
             self.rotate(node.left.data)
-        result = [x for x in self.breadth_first_traversal()]
-        for num in result:
-            print(num)
-        print()
-        print()
+        # result = [x for x in self.breadth_first_traversal()]
+        # for num in result:
+        #     print(num)
+        # print()
+        # print()
 
     def _replace_node(self, nxt, node):
         """Helper to replace the connections to node to nxt."""
