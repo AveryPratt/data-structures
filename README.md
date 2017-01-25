@@ -102,7 +102,7 @@ http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx
 https://codefellows.github.io/sea-python-401d5/assignments/hash_table.html
 https://en.wikipedia.org/wiki/Hash_tree
 
-Binary Search Tree supports the following methods:
+Hash Table supports the following methods:
 
 - get(key) - should return the value stored with the given key, O(n)
 - set(key, val) - should store the given val using the given key, O(1) time
