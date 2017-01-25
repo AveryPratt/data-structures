@@ -48,6 +48,18 @@ def test_hash_table_get(hash_table):
     assert hash_table.get("hello") == "value"
 
 
+def test_hash_table_get_value_not_there(hash_table):
+    """Test hash table get using addative method when key doesn't exist."""
+    hash_table.set("hello", "value")
+    assert hash_table.get("hi") is None
+
+
+def test_hash_table_xor_get_value_not_there(hash_xor):
+    """Test hash table get using xor method when key doesn't exist."""
+    hash_xor.set("hello", "value")
+    assert hash_xor.get("hi") is None
+
+
 def test_hash_table_xor_set(hash_xor):
     """Test hash table set using xor method."""
     hash_xor.set("hello", "value")
