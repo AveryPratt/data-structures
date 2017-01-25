@@ -8,13 +8,13 @@ def empty_trie():
     """Fixture for empty trie."""
     from trie import Trie
     empty = Trie()
-    reutn empty
+    return empty
 
 
 @pytest.fixture
 def simple_trie():
     """Fixture for simple trie."""
-    from trie import Trie    
+    from trie import Trie
     simple = Trie()
     simple.insert('a')
     return simple
@@ -22,7 +22,9 @@ def simple_trie():
 
 @pytest.fixture
 def trie():
-    """Fixture for a trie.""" 
+    """Fixture for a trie."""
+    from trie import Trie
+
     trie = Trie()
     words = ['into', 'int', 'it', 'tea', 'ted', 'ten', 'to']
     for word in words:
@@ -32,7 +34,7 @@ def trie():
 
 def test_init_creates_empty_trie(empty_trie):
     """Test empty nodes on empty tree."""
-    assert empty_trie._nodes = {'': set()}
+    assert empty_trie._nodes == {'': set()}
 
 
 def test_contains(trie):
@@ -67,5 +69,3 @@ def test_insert_adds_each_letter(empty_trie):
     empty_trie.insert('hi')
     assert 'h' in empty_trie._nodes.keys()
     assert 'hi' in empty_trie._nodes.keys()
-
-
