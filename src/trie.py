@@ -19,17 +19,23 @@ class Trie(object):
     finds the branch that the value is on and removes the nodes that are unique to that branch
     """
 
-    def __init__():
+    def __init__(self):
+        """Create a new instance of a trie."""
         pass
-    
+
     def insert(self, val):
+        """Insert a value into the trie as a new branch."""
         pass
-    
+
     def contains(self, val):
+        """Return whether a value is contained as a branch of the trie."""
         pass
-    
+
     def size(self):
+        """Return the number of branches in the trie."""
         pass
-    
+
     def remove(self, val):
+        """Remove the branch of the trie containing the value.
+        (doesn't remove nodes that lead to other branches)"""
         pass
