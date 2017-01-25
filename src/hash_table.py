@@ -1,5 +1,4 @@
-"""Contains a hash table with fixed number of buckets that can take different hash functions."""
-
+"""Hash table with fixed number of buckets that with different hash functions."""
 
 
 class HashTable(object):
@@ -15,19 +14,31 @@ class HashTable(object):
 
     def __init__(self, buckets, hash_func=None):
         """Create a Hash Table."""
-        self.buckets = [[]] * buckets
+        self.buckets = [[] for n in range(buckets)]
         if hash_func == "xor":
             self._hash = self._xor_hash
 
     def get(self, key):
         """Should return the value stored with the given key."""
         hash_code = self._hash(key)
-        return self.buckets[hash_code]
+        bucket = self.buckets[hash_code]
+
+        for tup in bucket:
+            if tup[0] == key:
+                return tup[1]
 
     def set(self, key, val):
-        """Should store the given val using the given key."""
+        """Should store the given val using the given key.
+
+        If key and val exists in the bucket, remove it to avoid duplicates.
+        """
         hash_code = self._hash(key)
-        self.buckets[hash_code].append(val)
+        bucket = self.buckets[hash_code]
+        if bucket:
+            for tup in bucket:
+                if tup[0] == key:
+                    bucket.remove(tup)
+        self.buckets[hash_code].append((key, val))
 
     def _hash(self, key):
         """Additive hashing function."""
@@ -37,7 +48,7 @@ class HashTable(object):
         return hash_code % len(self.buckets)
 
     def _xor_hash(self, key):
-        """returns a hashcode created by the xor operation."""
+        """Return a hashcode created by the xor operation."""
         if type(key) is not str:
             raise TypeError('Hash functions only work on strings.')
         hash_code = 0
