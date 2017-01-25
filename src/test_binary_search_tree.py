@@ -465,45 +465,45 @@ def test_rotation_leaf_left(new_bst):
     assert result == [8, 3, 9, 1, 6, 10]
 
 
-def test_rebalance_empty_tree(new_bst):
-    """Test that rebalancing an empty tree does nothing."""
-    new_bst[1]._rebalance()
-    result = [x for x in new_bst[1].breadth_first_traversal()]
+# def test_rebalance_empty_tree(new_bst):
+#     """Test that rebalancing an empty tree does nothing."""
+#     new_bst[1]._rebalance()
+#     result = [x for x in new_bst[1].breadth_first_traversal()]
 
-    assert result == []
-
-
-def test_rebalance_one_node_tree(new_bst):
-    """Test that rebalancing an empty tree does nothing."""
-    new_bst[2]._rebalance()
-    result = [x for x in new_bst[2].breadth_first_traversal()]
-
-    assert result == [3]
+#     assert result == []
 
 
-def test_rebalance_unbalanced_right_tree(new_bst):
-    """Test that rebalancing an unbalanced tree reorders the nodes so it is balanced."""
-    new_bst[3]._rebalance()
-    result = [x for x in new_bst[3].breadth_first_traversal()]
+# def test_rebalance_one_node_tree(new_bst):
+#     """Test that rebalancing an empty tree does nothing."""
+#     new_bst[2]._rebalance()
+#     result = [x for x in new_bst[2].breadth_first_traversal()]
 
-    assert result == [2, 1, 4, 3, 5]
-
-
-def test_rebalance_unbalanced_right_tree_balance_number(new_bst):
-    """Test that rebalancing an unbalanced tree changes the root's balance number."""
-    new_bst[3]._rebalance()
-    assert new_bst[3].root.balance_number == 2
+#     assert result == [3]
 
 
-def test_rebalance_unbalanced_left_tree(new_bst):
-    """Test that rebalancing an unbalanced tree reorders the nodes so it is balanced."""
-    new_bst[4]._rebalance()
-    result = [x for x in new_bst[4].breadth_first_traversal()]
+# def test_rebalance_unbalanced_right_tree(new_bst):
+#     """Test that rebalancing an unbalanced tree reorders the nodes so it is balanced."""
+#     new_bst[3]._rebalance()
+#     result = [x for x in new_bst[3].breadth_first_traversal()]
 
-    assert result == [4, 2, 5, 1, 3]
+#     assert result == [2, 1, 4, 3, 5]
 
 
-def test_rebalance_unbalanced_left_tree_balance_number(new_bst):
-    """Test that rebalancing an unbalanced tree changes the root's balance number."""
-    new_bst[4]._rebalance()
-    assert new_bst[4].root.balance_number == 2
+# def test_rebalance_unbalanced_right_tree_balance_number(new_bst):
+#     """Test that rebalancing an unbalanced tree changes the root's balance number."""
+#     new_bst[3]._rebalance()
+#     assert new_bst[3].root.balance_number == 2
+
+
+# def test_rebalance_unbalanced_left_tree(new_bst):
+#     """Test that rebalancing an unbalanced tree reorders the nodes so it is balanced."""
+#     new_bst[4]._rebalance()
+#     result = [x for x in new_bst[4].breadth_first_traversal()]
+
+#     assert result == [4, 2, 5, 1, 3]
+
+
+# def test_rebalance_unbalanced_left_tree_balance_number(new_bst):
+#     """Test that rebalancing an unbalanced tree changes the root's balance number."""
+#     new_bst[4]._rebalance()
+#     assert new_bst[4].root.balance_number == 2
