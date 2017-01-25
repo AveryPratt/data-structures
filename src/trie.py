@@ -21,15 +21,27 @@ class Trie(object):
 
     def __init__(self):
         """Create a new instance of a trie."""
-        pass
+        self._nodes = {"": set()}
 
     def insert(self, val):
         """Insert a value into the trie as a new branch."""
-        pass
+        for num in range(len(val) + 1):
+            if self.contains(val[:len(val) - num]):
+                self._add_branch(val, num)
+                break
+
+    def _add_branch(self, val, num):
+        """Iteratively creates a branch by linking nodes
+        that add a letter each time until it spells the word."""
+        for itr in range(num):
+            idx = len(val) + itr - num
+            self._nodes[val[:idx + 1]] = set()
+            self._nodes[val[:idx]].add(val[:idx + 1])
+        self._nodes[val].add("$")
 
     def contains(self, val):
         """Return whether a value is contained as a branch of the trie."""
-        pass
+        return val in self._nodes
 
     def size(self):
         """Return the number of branches in the trie."""
