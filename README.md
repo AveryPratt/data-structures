@@ -102,8 +102,26 @@ http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx
 https://codefellows.github.io/sea-python-401d5/assignments/hash_table.html
 https://en.wikipedia.org/wiki/Hash_tree
 
-Binary Search Tree supports the following methods:
+Hash table supports the following methods:
 
 - get(key) - should return the value stored with the given key, O(n)
 - set(key, val) - should store the given val using the given key, O(1) time
 - _hash(key) - should hash the key provided (note that this is an internal api)
+
+
+## Trie:
+
+**Module:** trie.py
+
+**Tests:** test_trie.py
+
+**Resources Used:** 
+http://cs.nyu.edu/~kshitij/courses/ds12/index_files/notes-trie.txt
+https://codefellows.github.io/sea-python-401d5/lectures/trie.html
+
+Trie supports the following methods:
+
+- insert(self, val) - creates a new branch containing nodes that spell the value which diverges where the spelling differs from an existing branch
+- contains(self, val) - returns whether or not a value is contained as a branch of the trie
+- size(self) - returns the number of branches in the tree
+- remove(self, val) - finds the branch that the value is on and removes the nodes that are unique to that branch
