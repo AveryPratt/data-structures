@@ -1,6 +1,6 @@
 # data-structures
 
-[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures)
+[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures)[![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg)](https://coveralls.io/github/AveryPratt/data-structures)
 
 This repository contains sample code for several classic data structures in Python.
 
