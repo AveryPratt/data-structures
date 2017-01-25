@@ -45,7 +45,7 @@ class Trie(object):
 
     def size(self):
         """Return the number of branches in the trie."""
-        pass
+        return sum(1 for x in self._nodes.values() if '$' in x)
 
     def remove(self, val):
         """Remove the branch of the trie containing the value.
