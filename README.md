@@ -121,7 +121,7 @@ https://codefellows.github.io/sea-python-401d5/lectures/trie.html
 
 Trie supports the following methods:
 
-- insert(self, val) - creates a new branch containing nodes that spell the value which diverges where the spelling differs from an existing branch
-- contains(self, val) - returns whether or not a value is contained as a branch of the trie
-- size(self) - returns the number of branches in the tree
-- remove(self, val) - finds the branch that the value is on and removes the nodes that are unique to that branch
+- insert(self, val) - creates a new branch containing nodes that spell the value which diverges where the spelling differs from an existing branch, O(n)
+- contains(self, val) - returns whether or not a value is contained as a branch of the trie, O(1)
+- size(self) - returns the number of branches in the tree, O(n * k)
+- remove(self, val) - finds the branch that the value is on and removes the nodes that are unique to that branch, O(n)
