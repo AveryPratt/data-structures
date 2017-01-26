@@ -126,3 +126,4 @@ def test_remove_word_keeps_longer_word(trie):
     """Test remove trie for a short word that is contained in others."""
     trie.remove('int')
     assert trie.contains('into')
+
