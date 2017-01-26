@@ -1,6 +1,6 @@
 # data-structures
 
-[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures)[![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg)](https://coveralls.io/github/AveryPratt/data-structures)
+[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures)[![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg?branch=trie)](https://coveralls.io/github/AveryPratt/data-structures?branch=trie)
 
 This repository contains sample code for several classic data structures in Python.
 
@@ -43,7 +43,7 @@ methods:
     returns the closest node to the head of the list that contains val.
 - **remove(val)**
     removes the node containing val closest to the head from the list.
-Use-cases:
+  Use-cases:
         A double-linked list would be more appropriate than a single-linked list if the list was bing used
     as a way to store and retrieve data. In that use-case the abiliry to navigate up and down the list in order to find data would be necessary. A single-linked list would be more appropriate than a double-linked list if the user was intnded to only have one chance to access the node and then move on. A use-case like this would probably be simmilar to an online test where the user couldn't change answers once they had been submited.
 
