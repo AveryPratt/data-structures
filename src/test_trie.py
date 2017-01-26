@@ -152,3 +152,17 @@ def test_insert_not_a_string_is_an_error(trie):
     """Test error is triggered if try to insert a non str."""
     with pytest.raises(TypeError):
         trie.insert(1)
+
+
+def test_depth_first_traversal(trie):
+    """Test output of a depth first traversal."""
+    result = [x for x in trie.depth_first_traversal('i')]
+
+    assert result == ['n', 't', 'o']
+
+
+def test_depth_first_traversal_root(trie):
+    """Test depth first traversal on the root."""
+    result = [x for x in trie.depth_first_traversal()]
+
+    assert result == ['i', 'n', 't', 'o', 't', 'e', 'a', 'd', 'n', 'o']
