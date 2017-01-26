@@ -49,7 +49,7 @@ def test_contains_false(simple_trie):
 
 def test_contains_string(trie):
     """Test if trie contains a string that isn't a word."""
-    assert trie.contains('in')
+    assert not trie.contains('in')
 
 
 def test_insert_adds_keys(empty_trie):
@@ -69,6 +69,24 @@ def test_insert_adds_each_letter(empty_trie):
     empty_trie.insert('hi')
     assert 'h' in empty_trie._nodes.keys()
     assert 'hi' in empty_trie._nodes.keys()
+
+
+def test_insert_non_string_raises_error(empty_trie):
+    """Test insert a list object on an empty tree raises type error."""
+    with pytest.raises(TypeError):
+        empty_trie.insert(False)
+
+
+def test_insert_none_raises_error(empty_trie):
+    """Test insert a list object on an empty tree raises type error."""
+    with pytest.raises(TypeError):
+        empty_trie.insert(None)
+
+
+def test_insert_iterable_raises_error(empty_trie):
+    """Test insert a list object on an empty tree raises type error."""
+    with pytest.raises(TypeError):
+        empty_trie.insert([1, 2, 3])
 
 
 def test_size_of_trie(trie):

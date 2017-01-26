@@ -28,8 +28,10 @@ class Trie(object):
 
     def insert(self, val):
         """Insert a value into the trie as a new branch."""
+        if type(val) is not str:
+            raise TypeError("Trie can only take values that are strings.")
         for num in range(len(val) + 1):
-            if self.contains(val[:len(val) - num]):
+            if self._in_chain(val[:len(val) - num]):
                 self._add_branch(val, num)
                 break
 
@@ -46,6 +48,13 @@ class Trie(object):
 
     def contains(self, val):
         """Return whether a value is contained as a branch of the trie."""
+        for key, value in self._nodes.items():
+            if key is val and "$" in value:
+                return True
+        return False
+
+    def _in_chain(self, val):
+        """Return whether a value is part of a branch of the trie."""
         return val in self._nodes
 
     def size(self):
