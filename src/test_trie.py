@@ -120,3 +120,29 @@ def test_remove_word_keeps_longer_word(trie):
     """Test remove trie for a short word that is contained in others."""
     trie.remove('int')
     assert trie.contains('into')
+
+
+def test_size_decrease_with_remove(trie):
+    """Test remove trie decreases size."""
+    size = trie.size()
+    trie.remove('int')
+    assert trie.size() == size - 1
+
+
+def test_size_increases_with_insert(trie):
+    """Test insert trie increases size."""
+    size = trie.size()
+    trie.insert('tear')
+    assert trie.size() == size + 1
+
+
+def test_remove_word_that_doesnt_exist(trie):
+    """Test remove a node that doesn't exist is key error."""
+    with pytest.raises(KeyError):
+        trie.remove('tear')
+
+
+def test_insert_not_a_string_is_an_error(trie):
+    """Test error is triggered if try to insert a non str."""
+    with pytest.raises(TypeError):
+        trie.insert(1)
