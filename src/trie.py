@@ -91,7 +91,11 @@ class Trie(object):
             else:
                 yield curr
             if "$" in self._nodes[curr]:
-                curr = to_visit[-1]
+                if len(to_visit):
+                    to_visit = to_visit[:-1]
+                    curr = to_visit[-1]
+                else:
+                    raise StopIteration
             else:
                 new_nodes = self._nodes[curr]
                 if len(new_nodes) == 1:
@@ -99,7 +103,6 @@ class Trie(object):
                 else:
                     if start in to_visit:
                         to_visit.remove(start)
-                    # import pdb; pdb.set_trace()
                     new_list = list(new_nodes)
                     new_list.reverse()
                     to_visit.extend(new_list)
