@@ -84,3 +84,21 @@ def test_size_of_simple_trie(simple_trie):
 def test_size_of_empty_trie(empty_trie):
     """Test size of trie."""
     assert empty_trie.size() == 0
+
+
+def test_remove_of_trie(trie):
+    """Test remove word from trie."""
+    trie.remove('to')
+    assert not trie.contains('to')
+
+
+def test_remove_of_trie_non_word(trie):
+    """Test remove trie for not a word."""
+    trie.remove('in')
+    assert not trie.contains('in')
+
+
+def test_remove_word_keeps_longer_word(trie):
+    """Test remove trie for a short word that is contained in others."""
+    trie.remove('int')
+    assert trie.contains('into')
