@@ -49,7 +49,7 @@ def test_contains_false(simple_trie):
 
 def test_contains_string(trie):
     """Test if trie contains a string that isn't a word."""
-    assert simple_trie.contains('in')
+    assert trie.contains('in')
 
 
 def test_insert_adds_keys(empty_trie):
@@ -61,7 +61,7 @@ def test_insert_adds_keys(empty_trie):
 def test_insert_adds_keys_add_end(empty_trie):
     """Test insert on an empty tree adds a word ender."""
     empty_trie.insert('hello')
-    assert '$' in empty_trie._nodes.values()
+    assert set(['$']) in empty_trie._nodes.values()
 
 
 def test_insert_adds_each_letter(empty_trie):
@@ -69,3 +69,18 @@ def test_insert_adds_each_letter(empty_trie):
     empty_trie.insert('hi')
     assert 'h' in empty_trie._nodes.keys()
     assert 'hi' in empty_trie._nodes.keys()
+
+
+def test_size_of_trie(trie):
+    """Test size of trie."""
+    assert trie.size() == 7
+
+
+def test_size_of_simple_trie(simple_trie):
+    """Test size of trie."""
+    assert simple_trie.size() == 1
+
+
+def test_size_of_empty_trie(empty_trie):
+    """Test size of trie."""
+    assert empty_trie.size() == 0
