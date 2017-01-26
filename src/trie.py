@@ -81,6 +81,26 @@ class Trie(object):
             idx = len(val) + itr - num
             del self._nodes[val[:idx + 1]]
 
-    def depth_first_traversal(self, start):
+    def depth_first_traversal(self, start=""):
         """Return all the possibe words that could result from start."""
-        pass
+        to_visit = [start]
+        curr = start
+        while to_visit:
+            if curr:
+                yield curr[-1]
+            else:
+                yield curr
+            if "$" in self._nodes[curr]:
+                curr = to_visit[-1]
+            else:
+                new_nodes = self._nodes[curr]
+                if len(new_nodes) == 1:
+                    curr = list(self._nodes[curr])[0]
+                else:
+                    if start in to_visit:
+                        to_visit.remove(start)
+                    # import pdb; pdb.set_trace()
+                    new_list = list(new_nodes)
+                    new_list.reverse()
+                    to_visit.extend(new_list)
+                    curr = new_list[-1]
