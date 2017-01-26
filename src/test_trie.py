@@ -67,8 +67,14 @@ def test_insert_adds_keys_add_end(empty_trie):
 def test_insert_adds_each_letter(empty_trie):
     """Test insert on an empty tree adds each leter."""
     empty_trie.insert('hi')
-    assert 'h' in empty_trie._nodes.keys()
-    assert 'hi' in empty_trie._nodes.keys()
+    assert 'h' in empty_trie._nodes.keys() and 'hi' in empty_trie._nodes.keys()
+
+
+def test_insert_dupulicate_doesnt_insert(trie):
+    """Test insert on an empty tree adds a word ender."""
+    trie_len = len(trie._nodes)
+    trie.insert('into')
+    assert len(trie._nodes) == trie_len
 
 
 def test_insert_non_string_raises_error(empty_trie):
