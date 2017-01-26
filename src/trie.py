@@ -80,3 +80,7 @@ class Trie(object):
         for itr in range(num):
             idx = len(val) + itr - num
             del self._nodes[val[:idx + 1]]
+
+    def depth_first_traversal(self, start):
+        """Return all the possibe words that could result from start."""
+        pass
