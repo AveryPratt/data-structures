@@ -118,8 +118,8 @@ def test_remove_of_trie(trie):
 
 def test_remove_of_trie_non_word(trie):
     """Test remove trie for not a word."""
-    trie.remove('in')
-    assert not trie.contains('in')
+    with pytest.raises(ValueError):
+        trie.remove('in')
 
 
 def test_remove_word_keeps_longer_word(trie):
@@ -144,7 +144,7 @@ def test_size_increases_with_insert(trie):
 
 def test_remove_word_that_doesnt_exist(trie):
     """Test remove a node that doesn't exist is key error."""
-    with pytest.raises(KeyError):
+    with pytest.raises(ValueError):
         trie.remove('tear')
 
 

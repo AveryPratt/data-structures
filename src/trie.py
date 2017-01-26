@@ -49,7 +49,7 @@ class Trie(object):
     def contains(self, val):
         """Return whether a value is contained as a branch of the trie."""
         for key, value in self._nodes.items():
-            if key is val and "$" in value:
+            if key == val and "$" in value:
                 return True
         return False
 
@@ -66,6 +66,8 @@ class Trie(object):
 
         (doesn't remove nodes that lead to other branches)
         """
+        if not self.contains(val):
+            raise ValueError("Cannot remove a value that is not in the trie.")
         for num in range(len(val) + 1):
             if len(self._nodes[val[:len(val) - num]]) > 1:
                 self._delete_branch(val, num)
@@ -73,10 +75,32 @@ class Trie(object):
 
     def _delete_branch(self, val, num):
         """Delete a branch."""
+        if num <= 0:
+            self._nodes[val[:len(val) - num]].remove("$")
         for itr in range(num):
             idx = len(val) + itr - num
-            try:
-                self._nodes[val[:idx]].remove(val[:idx + 1])
-                del self._nodes[val[:idx + 1]]
-            except KeyError:
-                del self._nodes[val[:idx + 1]]
+            del self._nodes[val[:idx + 1]]
+
+    def depth_first_traversal(self, start=""):
+        """Return all the possibe words that could result from start."""
+        to_visit = [start]
+        curr = start
+        while to_visit:
+            if curr:
+                yield curr[-1]
+            else:
+                yield curr
+            if "$" in self._nodes[curr]:
+                curr = to_visit[-1]
+            else:
+                new_nodes = self._nodes[curr]
+                if len(new_nodes) == 1:
+                    curr = list(self._nodes[curr])[0]
+                else:
+                    if start in to_visit:
+                        to_visit.remove(start)
+                    # import pdb; pdb.set_trace()
+                    new_list = list(new_nodes)
+                    new_list.reverse()
+                    to_visit.extend(new_list)
+                    curr = new_list[-1]
