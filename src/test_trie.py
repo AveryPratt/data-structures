@@ -176,11 +176,11 @@ def test_depth_first_traversal_no_forks(simple_trie):
     assert result == ['', 'a']
 
 
-# def test_depth_first_traversal_empty(empty_trie):
-#     """Test depth first traversal on the root."""
-#     result = [x for x in empty_trie.depth_first_traversal()]
+def test_depth_first_traversal_empty(empty_trie):
+    """Test depth first traversal on the root."""
+    result = [x for x in empty_trie.depth_first_traversal()]
 
-#     assert result == []
+    assert result == [""]
 
 def test_depth_first_traversal_invalid_start(trie):
     """Test depth first with an invalid start."""
