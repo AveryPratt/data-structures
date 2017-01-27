@@ -85,23 +85,24 @@ class Trie(object):
         """Return all the possibe words that could result from start."""
         to_visit = [start]
         while to_visit:
-            import pdb; pdb.set_trace()
-            curr = to_visit.pop()
-            yield curr if curr else ""
+            curr = to_visit[-1]
+            yield curr[-1] if curr else ""
             if len(self._nodes[curr]) == 1 and "$" in self._nodes[curr]:
-                to_visit = to_visit[:-1]
+                to_visit.pop()
                 if len(to_visit):
                     curr = to_visit[-1]
                 else:
                     raise StopIteration
             elif len(self._nodes[curr]) == 1:
                 curr = list(self._nodes[curr])[0]
+                to_visit[-1] = curr
             else:
                 new_nodes = self._nodes[curr]
                 if "$" in new_nodes:
                     new_nodes.remove("$")
                 if len(new_nodes) == 1:
-                    curr = list(self._nodes[curr])[0]
+                    curr = list(new_nodes)[0]
+                    to_visit[-1] = curr
                 else:
                     if start in to_visit:
                         to_visit.remove(start)
