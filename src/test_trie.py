@@ -165,4 +165,30 @@ def test_depth_first_traversal_root(trie):
     """Test depth first traversal on the root."""
     result = [x for x in trie.depth_first_traversal()]
 
-    assert result == ['', 'i', 'n', 't', 'o', 't', 't', 'e', 'a', 'd', 'n', 'o']
+    assert result == ['', 'i', 'n', 't', 'o', 't',
+                      't', 'e', 'a', 'd', 'n', 'o']
+
+
+def test_depth_first_traversal_no_forks(simple_trie):
+    """Test depth first traversal on the root."""
+    result = [x for x in simple_trie.depth_first_traversal()]
+
+    assert result == ['', 'a']
+
+
+# def test_depth_first_traversal_empty(empty_trie):
+#     """Test depth first traversal on the root."""
+#     result = [x for x in empty_trie.depth_first_traversal()]
+
+#     assert result == []
+
+def test_depth_first_traversal_invalid_start(trie):
+    """Test depth first traversal on the root."""
+    with pytest.raises(TypeError):
+        [x for x in trie.depth_first_traversal(1)]
+
+
+def test_depth_first_traversal_invalid_start_again(trie):
+    """Test depth first traversal on the root."""
+    with pytest.raises(TypeError):
+        [x for x in trie.depth_first_traversal([1, 2, 3])]
