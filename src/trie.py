@@ -108,5 +108,8 @@ class Trie(object):
                     if to_visit:
                         to_visit.pop()
                     to_visit.extend(new_list)
-                    curr = to_visit[-1]
+                    try:
+                        curr = to_visit[-1]
+                    except IndexError:
+                        break
         raise StopIteration
