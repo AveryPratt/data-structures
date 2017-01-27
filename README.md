@@ -1,6 +1,6 @@
 # data-structures
 
-[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures) [![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg?branch=trie)](https://coveralls.io/github/AveryPratt/data-structures?branch=trie)
+[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures) [![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg?branch=trie-traversal)](https://coveralls.io/github/AveryPratt/data-structures?branch=trie-traversal)
 
 This repository contains sample code for several classic data structures in Python.
 
@@ -44,7 +44,7 @@ methods:
 - **remove(val)**
     removes the node containing val closest to the head from the list.
   Use-cases:
-        A double-linked list would be more appropriate than a single-linked list if the list was bing used
+      A double-linked list would be more appropriate than a single-linked list if the list was bing used
     as a way to store and retrieve data. In that use-case the abiliry to navigate up and down the list in order to find data would be necessary. A single-linked list would be more appropriate than a double-linked list if the user was intnded to only have one chance to access the node and then move on. A use-case like this would probably be simmilar to an online test where the user couldn't change answers once they had been submited.
 
 ## Queue:
@@ -116,12 +116,19 @@ Hash table supports the following methods:
 **Tests:** test_trie.py
 
 **Resources Used:** 
-http://cs.nyu.edu/~kshitij/courses/ds12/index_files/notes-trie.txt
-https://codefellows.github.io/sea-python-401d5/lectures/trie.html
+[http://cs.nyu.edu/~kshitij/courses/ds12/index_files/notes-trie.txt](http://cs.nyu.edu/~kshitij/courses/ds12/index_files/notes-trie.txt)
+[https://codefellows.github.io/sea-python-401d5/lectures/trie.html](https://codefellows.github.io/sea-python-401d5/lectures/trie.html)
 
 Trie supports the following methods:
 
-- insert(self, val) - creates a new branch containing nodes that spell the value which diverges where the spelling differs from an existing branch, O(n)
-- contains(self, val) - returns whether or not a value is contained as a branch of the trie, O(1)
-- size(self) - returns the number of branches in the tree, O(n * k)
-- remove(self, val) - finds the branch that the value is on and removes the nodes that are unique to that branch, O(n)
+- **insert(self, val)**
+  creates a new branch containing nodes that spell the value which diverges where the spelling differs from an existing branch, O(n)
+- **contains(self, val)**
+  returns whether or not a value is contained as a branch of the trie, O(1)
+- **size(self)**
+  returns the number of branches in the tree, O(n * k)
+- **remove(self, val)**
+  finds the branch that the value is on and removes the nodes that are unique to that branch, O(n)
+- **trie.traversal(start)**
+  Performs a full depth-first traversal of the graph beginning at start. The argument “start” should be a string, which may or may not be the beginning of a string or strings contained in the Trie.
+
