@@ -84,26 +84,28 @@ class Trie(object):
     def depth_first_traversal(self, start=""):
         """Return all the possibe words that could result from start."""
         to_visit = [start]
-        curr = start
         while to_visit:
-            if curr:
-                yield curr[-1]
-            else:
-                yield curr
-            if "$" in self._nodes[curr]:
+            import pdb; pdb.set_trace()
+            curr = to_visit.pop()
+            yield curr if curr else ""
+            if len(self._nodes[curr]) == 1 and "$" in self._nodes[curr]:
+                to_visit = to_visit[:-1]
                 if len(to_visit):
-                    to_visit = to_visit[:-1]
                     curr = to_visit[-1]
                 else:
                     raise StopIteration
+            elif len(self._nodes[curr]) == 1:
+                curr = list(self._nodes[curr])[0]
             else:
                 new_nodes = self._nodes[curr]
+                if "$" in new_nodes:
+                    new_nodes.remove("$")
                 if len(new_nodes) == 1:
                     curr = list(self._nodes[curr])[0]
                 else:
                     if start in to_visit:
                         to_visit.remove(start)
-                    new_list = list(new_nodes)
-                    new_list.reverse()
+                    tmp = list(new_nodes)
+                    new_list = sorted(tmp, reverse=True)
                     to_visit.extend(new_list)
-                    curr = new_list[-1]
+                    curr = to_visit[-1]
