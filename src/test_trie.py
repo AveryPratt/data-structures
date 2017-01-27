@@ -183,12 +183,18 @@ def test_depth_first_traversal_no_forks(simple_trie):
 #     assert result == []
 
 def test_depth_first_traversal_invalid_start(trie):
-    """Test depth first traversal on the root."""
+    """Test depth first with an invalid start."""
     with pytest.raises(TypeError):
         [x for x in trie.depth_first_traversal(1)]
 
 
 def test_depth_first_traversal_invalid_start_again(trie):
-    """Test depth first traversal on the root."""
+    """Test depth first traversal on an inavlid entry."""
     with pytest.raises(TypeError):
         [x for x in trie.depth_first_traversal([1, 2, 3])]
+
+
+def test_depth_first_traversal_for_branching_node(trie):
+    result = [x for x in trie.depth_first_traversal('te')]
+
+    assert result == ['e', 'a', 'd', 'n']
