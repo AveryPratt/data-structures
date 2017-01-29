@@ -129,6 +129,6 @@ Trie supports the following methods:
   returns the number of branches in the tree, O(n * k)
 - **remove(self, val)**
   finds the branch that the value is on and removes the nodes that are unique to that branch, O(n)
-- **trie.traversal(start)**
-  Performs a full depth-first traversal of the graph beginning at start. The argument “start” should be a string, which may or may not be the beginning of a string or strings contained in the Trie.
+- **trie.depth_first_traversal(start)**
+  returns a generator that performs a full depth-first traversal of the graph beginning at start. The argument “start” should be a string, which may or may not be the beginning of a string or strings contained in the Trie. O(1) to create generator, O(n) to iterate through it.
 
