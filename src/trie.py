@@ -20,6 +20,10 @@ class Trie(object):
     remove(self, val):
     finds the branch that the value is on and removes the nodes that are
     unique to that branch.
+
+    depth_first_traversal(self, start):
+    returns a generator that returns a pre-order path of letters in a depth-first traversal
+    starting at the input value.
     """
 
     def __init__(self):
