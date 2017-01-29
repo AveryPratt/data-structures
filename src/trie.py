@@ -85,31 +85,33 @@ class Trie(object):
         """Return all the possibe words that could result from start."""
         to_visit = [start]
         while to_visit:
-            print(to_visit)
             curr = to_visit[-1]
             yield curr[-1] if curr else ""
-            if len(self._nodes[curr]) == 1 and "$" in self._nodes[curr]:
-                to_visit.pop()
-                if not len(to_visit):
-                    break
-            elif len(self._nodes[curr]) == 1:
-                to_visit[-1] = list(self._nodes[curr])[0]
-            else:
-                new_nodes = self._nodes[curr]
-                if "$" in new_nodes:
-                    new_nodes.remove("$")
-                if len(new_nodes) == 1:
-                    to_visit[-1] = list(new_nodes)[0]
-                else:
-                    if start in to_visit:
-                        to_visit.remove(start)
-                    tmp = list(new_nodes)
-                    new_list = sorted(tmp, reverse=True)
-                    if to_visit:
-                        to_visit.pop()
-                    to_visit.extend(new_list)
-                    try:
-                        curr = to_visit[-1]
-                    except IndexError:
+            try:
+                if len(self._nodes[curr]) == 1 and "$" in self._nodes[curr]:
+                    to_visit.pop()
+                    if not len(to_visit):
                         break
+                elif len(self._nodes[curr]) == 1:
+                    to_visit[-1] = list(self._nodes[curr])[0]
+                else:
+                    new_nodes = self._nodes[curr]
+                    if "$" in new_nodes:
+                        new_nodes.remove("$")
+                    if len(new_nodes) == 1:
+                        to_visit[-1] = list(new_nodes)[0]
+                    else:
+                        if start in to_visit:
+                            to_visit.remove(start)
+                        tmp = list(new_nodes)
+                        new_list = sorted(tmp, reverse=True)
+                        if to_visit:
+                            to_visit.pop()
+                        to_visit.extend(new_list)
+                        try:
+                            curr = to_visit[-1]
+                        except IndexError:
+                            break
+            except KeyError:
+                raise ValueError("starting value is not in trie.")
         raise StopIteration

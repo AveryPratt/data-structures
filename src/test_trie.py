@@ -182,10 +182,23 @@ def test_depth_first_traversal_empty(empty_trie):
 
     assert result == [""]
 
+
+def test_depth_first_traversal_empty_wrong_start(empty_trie):
+    """Test depth first traversal on non-existant node."""
+    with pytest.raises(ValueError):
+        [x for x in empty_trie.depth_first_traversal("hi")]
+
+
 def test_depth_first_traversal_invalid_start(trie):
     """Test depth first with an invalid start."""
     with pytest.raises(TypeError):
         [x for x in trie.depth_first_traversal(1)]
+
+
+def test_depth_first_traversal_wrong_start(trie):
+    """Test depth first with an invalid start."""
+    with pytest.raises(ValueError):
+        [x for x in trie.depth_first_traversal("supercalifragilisticexpialidocious")]
 
 
 def test_depth_first_traversal_invalid_start_again(trie):
@@ -198,3 +211,9 @@ def test_depth_first_traversal_for_branching_node(trie):
     result = [x for x in trie.depth_first_traversal('te')]
 
     assert result == ['e', 'a', 'd', 'n']
+
+
+def test_depth_first_traversal_for_completed_branch(trie):
+    result = [x for x in trie.depth_first_traversal('into')]
+
+    assert result == ['o']
