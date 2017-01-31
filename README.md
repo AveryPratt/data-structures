@@ -132,3 +132,10 @@ Trie supports the following methods:
 - **trie.depth_first_traversal(start)**
   returns a generator that performs a full depth-first traversal of the graph beginning at start. The argument “start” should be a string, which may or may not be the beginning of a string or strings contained in the Trie. O(1) to create generator, O(n) to iterate through it.
 
+Sorting Algorithms:
+
+- **insertion_sort(input)**
+  Sorts an iterable by inserting one item at a time into place. worst-case: O(n^2) best-case: 0(n)
+
+- **merge_sort(input)**
+  Sorts an iterable by recursively dividing it into two piles and merging those piles. worst-case: O(n + log(n)) best-case: 0(n + log(n))
