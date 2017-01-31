@@ -22,7 +22,8 @@ class Trie(object):
     unique to that branch.
 
     depth_first_traversal(self, start):
-    returns a generator that returns a pre-order path of letters in a depth-first traversal
+    returns a generator that returns a pre-order path of letters in a
+    depth-first traversal
     starting at the input value.
     """
 

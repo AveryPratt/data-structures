@@ -1,9 +1,6 @@
 """Test insertion sorting algorithm sorts properly."""
 
 
-import pytest
-
-
 def test_insertion_sort_empty():
     """Sort an empty list."""
     from src.insertion_sort import insertion_sort
@@ -55,10 +52,12 @@ def test_insertion_sort_unordered_letters():
 def test_insertion_sort_duplicate_letters():
     """Sort a list containing unordered letters with duplicates."""
     from src.insertion_sort import insertion_sort
-    assert insertion_sort(["c", "b", "a", "a", "b", "c"]) == ["a", "a", "b", "b", "c", "c"]
+    assert insertion_sort(
+        ["c", "b", "a", "a", "b", "c"]) == ["a", "a", "b", "b", "c", "c"]
 
 
 def test_insertion_sort_capitalized_letters():
     """Sort a list containing unordered letters with duplicates."""
     from src.insertion_sort import insertion_sort
-    assert insertion_sort(["c", "B", "a", "A", "b", "C"]) == ["A", "B", "C", "a", "b", "c"]
+    assert insertion_sort(
+        ["c", "B", "a", "A", "b", "C"]) == ["A", "B", "C", "a", "b", "c"]
