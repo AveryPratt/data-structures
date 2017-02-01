@@ -1,13 +1,13 @@
 """Implementation of Insertion Sort."""
 
 
-def insertion_sort(input):
-    """sorts input using insertion sorting algorithm."""
-    for idx in range(len(input)):
-        while idx > 0 and input[idx] < input[idx - 1]:
-            input[idx], input[idx - 1] = input[idx - 1], input[idx]
+def insertion_sort(itr):
+    """sorts itr using insertion sorting algorithm."""
+    for idx in range(len(itr)):
+        while idx > 0 and itr[idx] < itr[idx - 1]:
+            itr[idx], itr[idx - 1] = itr[idx - 1], itr[idx]
             idx -= 1
-    return input
+    return itr
 
 
 if __name__ == "__main__":
