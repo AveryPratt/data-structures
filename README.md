@@ -104,8 +104,8 @@ https://en.wikipedia.org/wiki/Hash_tree
 
 Hash table supports the following methods:
 
-- get(key) - should return the value stored with the given key, O(n)
-- set(key, val) - should store the given val using the given key, O(1) time
+- get(key) - should return the value stored with the given key, `O(n)`
+- set(key, val) - should store the given val using the given key, `O(1)` time
 - _hash(key) - should hash the key provided (note that this is an internal api)
 
 
@@ -122,15 +122,15 @@ Hash table supports the following methods:
 Trie supports the following methods:
 
 - **insert(self, val)**
-  creates a new branch containing nodes that spell the value which diverges where the spelling differs from an existing branch, O(n)
+  creates a new branch containing nodes that spell the value which diverges where the spelling differs from an existing branch, `O(n)`
 - **contains(self, val)**
-  returns whether or not a value is contained as a branch of the trie, O(1)
+  returns whether or not a value is contained as a branch of the trie, `O(1)`
 - **size(self)**
-  returns the number of branches in the tree, O(n * k)
+  returns the number of branches in the tree, `O(n * k)`
 - **remove(self, val)**
-  finds the branch that the value is on and removes the nodes that are unique to that branch, O(n)
+  finds the branch that the value is on and removes the nodes that are unique to that branch, `O(n)`
 - **trie.depth_first_traversal(start)**
-  returns a generator that performs a full depth-first traversal of the graph beginning at start. The argument “start” should be a string, which may or may not be the beginning of a string or strings contained in the Trie. O(1) to create generator, O(n) to iterate through it.
+  returns a generator that performs a full depth-first traversal of the graph beginning at start. The argument “start” should be a string, which may or may not be the beginning of a string or strings contained in the Trie. `O(1)` to create generator, `O(n)` to iterate through it.
 
 Sorting Algorithms:
 
