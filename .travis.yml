@@ -15,7 +15,7 @@ script:
 # safelist
 branches:
   only:
-  - merge_sort
+  - quick_sort
 
 notifications:
   email: false
