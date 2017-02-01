@@ -125,3 +125,21 @@ Trie supports the following methods:
 - contains(self, val) - returns whether or not a value is contained as a branch of the trie, O(1)
 - size(self) - returns the number of branches in the tree, O(n * k)
 - remove(self, val) - finds the branch that the value is on and removes the nodes that are unique to that branch, O(n)
+
+**Example Trie**
+When initialize with the words 'teabag' and 'teapot' the trie takes the following structure:
+```Python
+self._nodes = {
+    '': {'t'},
+    't': {'te'},
+    'te': {'tea'},
+    'tea': {'teab', 'teap'},
+    'teab': {'teaba'},
+    'teaba': {'teabag'},
+    'teabag': {'$'},
+    'teap': {'teapo'},
+    'teapo': {'teapot'},
+    'teapot': {'$'}
+}
+```
+The root of the trie is represented by `''` and word endings are `'$'`. Each key represents a node in the tree and their values represent what nodes they point to.
