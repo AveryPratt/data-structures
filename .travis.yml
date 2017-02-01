@@ -15,7 +15,7 @@ script:
 # safelist
 branches:
   only:
-  - trie-traversal
+  - merge_sort
 
 notifications:
   email: false
