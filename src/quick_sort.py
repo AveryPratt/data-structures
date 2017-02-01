@@ -27,8 +27,15 @@ if __name__ == "__main__":
         "    pile_of_crap.append(rand.random())\n" +
         "quick_sort(pile_of_crap)"
     )
-    cmd2 = "quick_sort(['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'])"
     timer = Timer(stmt=cmd1, setup="from __main__ import quick_sort")
     print("Sort 10000 random numbers: ", timer.timeit(1))
+
+    timer = Timer(stmt="quick_sort(range(976))", setup="from __main__ import quick_sort")
+    print("Sort 976 ordered numbers: ", timer.timeit(1))
+
+    timer = Timer(stmt="quick_sort(range(976, 0, -1))", setup="from __main__ import quick_sort")
+    print("Sort 976 reversed numbers: ", timer.timeit(1))
+
+    cmd2 = "quick_sort(['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'])"
     timer = Timer(stmt=cmd2, setup="from __main__ import quick_sort")
     print("Sort qwerty alphabet 100000 times: ", timer.timeit(100000))

@@ -138,9 +138,9 @@ Sorting Algorithms:
   Sorts an iterable by inserting one item at a time into place. worst-case: `O(n^2)` best-case: `O(n)`
 
 - **merge_sort(input)**
-  Sorts an iterable by recursively dividing it into two piles and merging those piles. worst-case: `O(n + log(n))` best-case: `O(n + log(n))`
+  Sorts an iterable by recursively dividing it into two piles and merging those piles. worst-case: `O(n * log(n))` best-case: `O(n * log(n))`
 
 - **quick_sort(input)**
 
-  Sorts an iterable by recursively dividing it into two piles by a pivot and slapping them together. worst-case: `O(n^2)` best-case: `O(n + log(n))`
+  Sorts an iterable by recursively dividing it into two piles by a pivot and slapping them together. worst-case: `O(n^2)` best-case: `O(n * log(n))`
 
