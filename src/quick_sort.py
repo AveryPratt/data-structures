@@ -3,6 +3,18 @@
 
 def quick_sort(itr):
     """Sort iterable using quick sort algorithm."""
+    if len(itr) > 1:
+        pivot = itr[0]
+        left = []
+        right = []
+        for item in itr[1:]:
+            if item <= pivot:
+                left.append(item)
+            else:
+                right.append(item)
+        return quick_sort(left) + [pivot] + quick_sort(right)
+    else:
+        return itr
 
 
 if __name__ == "__main__":
