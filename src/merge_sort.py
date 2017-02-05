@@ -4,6 +4,7 @@
 def merge_sort(itr):
     """Sort iterable using merge sort algorithm."""
     new_itr = []
+    print(len(itr))
     if len(itr) > 1:
         pile1 = merge_sort(itr[:len(itr) // 2])
         pile2 = merge_sort(itr[len(itr) // 2:])
@@ -25,7 +26,7 @@ if __name__ == "__main__":
         "from random import Random\n" +
         "rand = Random()\n" +
         "pile_of_crap = []\n" +
-        "for i in range(10000):\n" +
+        "for i in range(1000000):\n" +
         "    pile_of_crap.append(rand.random())\n" +
         "merge_sort(pile_of_crap)"
     )
