@@ -60,11 +60,17 @@ def test_radix_sort_enourmous_base():
 
 
 def test_radix_sort_randomized():
-    """Sort a giant list of 1000000 random integers between 1 and 1000000 using base 10000"""
+    """Sort a giant list of 1000000 random integers between 1 and 1000000 using base 100000"""
     from src.radix_sort import radix_sort
     from random import Random
     rand = Random()
     pile_of_crap = []
-    for i in range(10000000):
-        pile_of_crap.append(rand.randint(0, 100000))
-    radix_sort(pile_of_crap, 10000000)
+    for i in range(1000000):
+        pile_of_crap.append(rand.randint(0, 1000000))
+    organized_pile_of_crap = radix_sort(pile_of_crap, 100000)
+    passed = True
+    for i in enumerate(organized_pile_of_crap):
+        if i[0] > 0:
+            if i[1] < organized_pile_of_crap[i[0] - 1]:
+                passed = False
+    assert passed
