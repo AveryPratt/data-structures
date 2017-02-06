@@ -139,3 +139,4 @@ Sorting Algorithms:
 
 - **merge_sort(input)**
   Sorts an iterable by recursively dividing it into two piles and merging those piles. worst-case: O(n + log(n)) best-case: 0(n + log(n))
+
