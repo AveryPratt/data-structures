@@ -1,6 +1,6 @@
 # data-structures
 
-[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=radix_sort)](https://travis-ci.org/AveryPratt/data-structures) [![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg?branch=radix_sort)](https://coveralls.io/github/AveryPratt/data-structures?branch=radix_sort)
+[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures) [![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg?branch=trie-traversal)](https://coveralls.io/github/AveryPratt/data-structures?branch=trie-traversal)
 
 This repository contains sample code for several classic data structures in Python.
 
@@ -138,5 +138,10 @@ Sorting Algorithms:
   Sorts an iterable by inserting one item at a time into place. worst-case: O(n^2) best-case: 0(n)
 
 - **merge_sort(input)**
-  Sorts an iterable by recursively dividing it into two piles and merging those piles. worst-case: O(n + log(n)) best-case: 0(n + log(n))
+  Sorts an iterable by recursively dividing it into two piles and merging those piles. worst-case: O(n log(n)) best-case: 0(n log(n))
 
+- **quick_sort(input)**
+  Sorts an iterable by recursively dividing it into two piles, each with numbers that are greater than or less than a pivot number. worst-case: O(n^2) best-case: O(n log(n))
+
+- **radix_sort(input, base=10)**
+  Sorts an iterable of integers by iteratively distributing each integer into one of base numbers of buckets, and then concatenating the buckets together. worst-case: O(n k) best-case: O(n k)
