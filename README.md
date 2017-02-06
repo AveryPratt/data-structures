@@ -1,6 +1,6 @@
 # data-structures
 
-[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=bst_remove)](https://travis-ci.org/AveryPratt/data-structures) [![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg?branch=trie-traversal)](https://coveralls.io/github/AveryPratt/data-structures?branch=trie-traversal)
+[![Build Status](https://travis-ci.org/AveryPratt/data-structures.svg?branch=merge_sort)](https://travis-ci.org/AveryPratt/data-structures) [![Coverage Status](https://coveralls.io/repos/github/AveryPratt/data-structures/badge.svg?branch=merge_sort)](https://coveralls.io/github/AveryPratt/data-structures?branch=merge_sort)
 
 This repository contains sample code for several classic data structures in Python.
 
