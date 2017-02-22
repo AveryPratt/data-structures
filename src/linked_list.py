@@ -27,6 +27,8 @@ class LinkedList(object):
 
 
     def pop(self):
+        if not self.head:
+            return None
         val = self.head.data
         if self.head.next == None:
             self.tail = None
@@ -34,14 +36,15 @@ class LinkedList(object):
         return val
 
     def size(self):
-        a = self.head
         count = 0
         if self.head:
             count = 1
-        while self.tail is not a:
-            count +=1
-            a = a.next
-        return count
+            cur = self.head
+            while cur.next:
+                count +=1
+                cur = cur.next
+            return count
+        return 0
 
 
     def search(self, val):
@@ -58,20 +61,24 @@ class LinkedList(object):
         if node is self.head:
             self.head = node.next
         else:
-            a = self.head
-            while a.next is not node:
-                a = a.next
-            if node is self.tail:
-                self.tail = a
-                a.next = None
-            else:
-                a.next = node.next
+            curr = self.head
+            try:
+                while curr.next is not node:
+                    curr = curr.next
+                if node is self.tail:
+                    self.tail = curr
+                    curr.next = None
+                else:
+                    curr.next = node.next
+            except AttributeError:
+                raise AttributeError("Node does not exist on the list.")
 
 
     def display(self):
         if self.head is None:
             return '()'
-        elif self.head is self.tail:
+        elif not self.head.next:
+            # import pdb; pdb.set_trace()
             return '(' + str(self.head.data) + ')'
         dis = '(' + str(self.head.data)
         a = self.head

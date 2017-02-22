@@ -51,6 +51,13 @@ def test_pop(st):
     assert st._linked_list.head.data is 2
 
 
+def test_pop_empty():
+    """Test that popping from an empty stack returns None."""
+    from stack import Stack
+    st = Stack()
+    assert st.pop() is None
+
+
 def test_pop_return(st):
     """Test that pop returns the right value."""
     assert st.pop() is 3
