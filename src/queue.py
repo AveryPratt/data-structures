@@ -26,8 +26,8 @@ class Queue(object):
             val = self.head.data
             if self.head.next is None:
                 self.tail = None
-            self.head = self.head.next
             self.head.prev = None
+            self.head = self.head.next
             return val
         except AttributeError:
             raise AttributeError("Cannot pop from an empty list.")
@@ -45,7 +45,9 @@ class Queue(object):
 
     def peek(self):
         """Return the data attribute of Head."""
-        return self.head.data
+        if self.head:
+            return self.head.data
+        return None
 
 
 class Node(object):

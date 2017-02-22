@@ -86,3 +86,15 @@ def test_size_change(q):
 def test_peek(q):
     """Test that peek returns the correct value."""
     assert q.peek() == q.head.data
+
+def test_peek_empty():
+    """Test that peek returns none if the queue is empty."""
+    from queue import Queue
+    my_q = Queue()
+    assert my_q.peek() is None
+
+def test_enqueue_dequeue():
+    from queue import Queue
+    my_q = Queue()
+    my_q.enqueue(5)
+    assert my_q.dequeue() == 5
