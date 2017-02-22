@@ -46,8 +46,8 @@ class KMeans(object):
     def _calc_distance(self, pt1, pt2):
         """Calculate the distance between two points."""
         dist = 0.0
-        for i in range(len(pt1) - 2):
-            dist += (pt1[i] - pt2[i])**2
+        for dim in range(len(pt1) - 2):
+            dist += (pt1[dim] - pt2[dim]) ** 2
         return dist ** .5
 
     def _classify(self, data):
@@ -87,6 +87,8 @@ class KMeans(object):
     def _random_centroids(self, data, k):
         """Return randomly generated centroids."""
         k_list = []
-        for i in range(k):
-            k_list.append([random.uniform(min(data[column]), max(data[column])) for column in range(len(data))])
+        for _ in range(k):
+            # import pdb; pdb.set_trace()
+            my_list = [random.uniform(min(data[column]), max(data[column])) for column in range(len(data.columns - 1))]
+            k_list.append(my_list)
         return k_list
