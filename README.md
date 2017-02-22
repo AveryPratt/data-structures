@@ -56,18 +56,6 @@ methods:
     returns the number of nodes in the queue.
 - peek()
     returns the value of the head withoud dequeueing it.
-
-## Queue
-A first-in first-out linear data structure
-methods:
-- enqueue()
-    adds an item to the end of the queue.
-- dequeue()
-    removes an item from the front of the queue.
-- size()
-    returns the number of items in the queue.
-- peak()
-    returns the value of the first item in the queue without removing it.
 Use-cases:
         A queue is a good tool for keeping track of requests that cannot be processed immediately. They can also be used in pairs to form a stack.
 
