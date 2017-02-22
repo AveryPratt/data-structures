@@ -45,6 +45,17 @@ Use-cases:
         A double-linked list would be more appropriate than a single-linked list if the list was bing used
     as a way to store and retrieve data. In that use-case the abiliry to navigate up and down the list in order to find data would be necessary. A single-linked list would be more appropriate than a double-linked list if the user was intnded to only have one chance to access the node and then move on. A use-case like this would probably be simmilar to an online test where the user couldn't change answers once they had been submited.
 
+## Queue:
+A queue containing nodes that can be added to the end of the list and removed from the front.
+methods:
+- enqueue(val)
+    add a node containing val to the end of the que.
+- dequeue()
+    removes a node from the front of the queue and return the value.
+- size()
+    returns the number of nodes in the queue.
+- peek()
+    returns the value of the head withoud dequeueing it.
 
 ## Queue
 A first-in first-out linear data structure
